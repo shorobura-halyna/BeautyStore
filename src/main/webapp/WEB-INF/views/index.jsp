@@ -13,5 +13,7 @@
 <body>
 INDEX
 <a href="/category">category</a>
+<a href="/brand">brand</a>
+<a href="/subcategory">subcategory</a>
 </body>
 </html>

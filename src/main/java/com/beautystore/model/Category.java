@@ -17,6 +17,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
     private List<Subcategory> subcategories = new ArrayList<>();
 }

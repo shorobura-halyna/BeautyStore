@@ -3,36 +3,46 @@ package com.beautystore.controller;
 import com.beautystore.model.Brand;
 import com.beautystore.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping ("/brand")
+import java.util.List;
+
+@RestController
+@RequestMapping("/brand")
 public class BrandController {
+
     @Autowired
     private BrandService brandService;
 
     @PostMapping
-    public String save(@RequestParam String brandName){
+    public HttpStatus save(@RequestParam String brandName) {
         Brand brand = new Brand();
         brand.setName(brandName);
         brandService.save(brand);
-        return "redirect:/brand";
+        return HttpStatus.OK;
+    }
+
+    @PutMapping
+    public HttpStatus update(@RequestParam int id,
+                             @RequestParam String brandName) {
+        Brand brand = new Brand();
+        brand.setId(id);
+        brand.setName(brandName);
+        brandService.save(brand);
+        return HttpStatus.OK;
     }
 
     @GetMapping
-    public String find(Model model){
-        model.addAttribute("brands", brandService.findAll());
-        return "brand";
+    public List<Brand> find() {
+        return brandService.findAll();
     }
 
-    @GetMapping("{id}")
-    public String delete(@PathVariable int id) {
+    @DeleteMapping
+    public HttpStatus delete(@RequestParam int id) {
         brandService.delete(id);
-        return "redirect:/brand";
+        return HttpStatus.OK;
     }
-
 
 
 }

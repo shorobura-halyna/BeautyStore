@@ -21,6 +21,8 @@ public class User {
     private int age;
     private int phone;
     private String email;
+    private String login;
+    private String password;
     @OneToOne (mappedBy = "user")
     private Basket basket;
     @OneToMany(mappedBy = "user")

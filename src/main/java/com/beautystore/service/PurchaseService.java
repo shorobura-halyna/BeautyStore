@@ -1,13 +1,13 @@
 package com.beautystore.service;
 
-import com.beautystore.model.Category;
+import com.beautystore.model.Purchase;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface CategoryService {
-    void save(Category category);
-    List<Category> findAll();
+public interface PurchaseService {
+    void save(Purchase purchase);
+    List<Purchase> findAll();
     void delete (int id);
 }

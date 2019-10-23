@@ -22,7 +22,6 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findAll() {
         return categoryDao.findAll();
     }
-
     @Override
     public void delete(int id) {
         categoryDao.deleteById(id);

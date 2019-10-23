@@ -4,14 +4,11 @@ import com.beautystore.model.Subcategory;
 import com.beautystore.service.CategoryService;
 import com.beautystore.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/subcategory")
 public class SubcategoryController {
     @Autowired
@@ -21,18 +18,33 @@ public class SubcategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public String save(@RequestParam String subcategoryName,
-                       @RequestParam Integer categoryId){
+    public HttpStatus save(@RequestParam String subcategoryName,
+                           @RequestParam int categoryId){
         subcategoryService.save(subcategoryName, categoryId);
-        return  "redirect:/subcategory";
+        return HttpStatus.OK;
     }
 
     @GetMapping
-    public String find(Model model){
+    public HttpStatus find(Model model){
         model.addAttribute("subcategories", subcategoryService.findAll());
         model.addAttribute("categories", categoryService.findAll());
-        return "subcategory";
+        return HttpStatus.OK;
     }
 
+    @PutMapping
+    public HttpStatus update(@RequestParam int id,
+                             @RequestParam String subcategoryName) {
+        Subcategory subcategory = new Subcategory();
+        subcategory.setId(id);
+        subcategory.setName(subcategoryName);
+        subcategoryService.save(subcategory);
+        return HttpStatus.OK;
+    }
+
+    @DeleteMapping
+    public HttpStatus delete(@RequestParam int id) {
+        subcategoryService.delete(id);
+        return HttpStatus.OK;
+    }
 
 }

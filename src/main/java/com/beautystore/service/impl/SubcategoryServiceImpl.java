@@ -29,6 +29,11 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
+    public void save(Subcategory subcategory) {
+        subcategoryDao.save(subcategory);
+    }
+
+    @Override
     public List<Subcategory> findAll() {
         return subcategoryDao.findAll();
     }

@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String login;
     private String password;
-    @OneToOne (mappedBy = "user")
+    @OneToOne(mappedBy = "user")
     private Basket basket;
     @OneToMany(mappedBy = "user")
     private List<Purchase> purchases = new ArrayList<>();

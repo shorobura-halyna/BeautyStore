@@ -32,6 +32,6 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public void delete(int id) {
-     commodityDao.deleteById(id);
+        commodityDao.deleteById(id);
     }
 }

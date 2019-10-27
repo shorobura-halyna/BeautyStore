@@ -23,12 +23,11 @@ public class Commodity {
     @ManyToOne
     private Subcategory subcategory;
     @ManyToMany
-    @JoinTable(name = "Basket_Commodity", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn (name = "id_basket"))
+    @JoinTable(name = "Basket_Commodity", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn(name = "id_basket"))
     private List<Basket> baskets = new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "Commodity_Purchase", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn(name = "id_purchase"))
     private List<Purchase> purchases = new ArrayList<>();
-
 
 
 }

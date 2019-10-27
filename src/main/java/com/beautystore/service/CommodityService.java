@@ -10,9 +10,11 @@ import java.util.List;
 @Service
 public interface CommodityService {
     void save(Commodity commodity);
+
     List<Commodity> findAll(Integer page,
                             Integer size,
                             String sortBy, @RequestParam Sort.Direction direction,
                             @RequestParam(required = false) String name);
-    void delete (int id);
+
+    void delete(int id);
 }

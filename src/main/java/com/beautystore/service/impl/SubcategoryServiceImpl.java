@@ -2,14 +2,19 @@ package com.beautystore.service.impl;
 
 import com.beautystore.dao.CategoryDao;
 import com.beautystore.dao.SubcategoryDao;
+import com.beautystore.dto.response.DataResponse;
+import com.beautystore.dto.response.SubcategoryResponse;
 import com.beautystore.model.Category;
 import com.beautystore.model.Subcategory;
 import com.beautystore.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -34,8 +39,22 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
-    public List<Subcategory> findAll() {
-        return subcategoryDao.findAll();
+    public DataResponse<SubcategoryResponse> findAll(Integer page,
+                                                     Integer size,
+                                                     String sortBy,
+                                                     Sort.Direction direction,
+                                                     String subcategoryName) {
+        Sort sort = Sort.by(direction, sortBy);
+        Page<Subcategory> subcategoryPage;
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        if (subcategoryName != null) {
+            subcategoryPage = subcategoryDao.findAllByNameLike("%" + subcategoryName + "%", pageRequest);
+        } else {
+            subcategoryPage = subcategoryDao.findAll(pageRequest);
+        }
+        return new DataResponse<>(subcategoryPage.getContent().stream()
+                .map(SubcategoryResponse::new)
+                .collect(Collectors.toList()), subcategoryPage);
     }
 
     @Override

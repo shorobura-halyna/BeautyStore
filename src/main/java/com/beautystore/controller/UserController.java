@@ -9,8 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -42,8 +40,8 @@ public class UserController {
                                               @RequestParam Integer size,
                                               @RequestParam String sortBy,
                                               @RequestParam Sort.Direction direction,
-                                              @RequestParam (required = false) String lastName) {
-        return userService.findAll(page, size, sortBy, direction, lastName);
+                                              @RequestParam(required = false) String secondName) {
+        return userService.findAll(page, size, sortBy, direction, secondName);
     }
 
     @DeleteMapping

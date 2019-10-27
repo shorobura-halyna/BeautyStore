@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/")
-public class IndexController  {
+public class IndexController {
 
     @GetMapping
-    public HttpStatus index(){
+    public HttpStatus index() {
         return HttpStatus.OK;
     }
 

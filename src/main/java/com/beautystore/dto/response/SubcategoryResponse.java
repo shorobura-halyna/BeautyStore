@@ -1,6 +1,7 @@
 package com.beautystore.dto.response;
 
 import com.beautystore.model.Category;
+import com.beautystore.model.Subcategory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +11,8 @@ public class SubcategoryResponse {
     private String name;
     private Category category;
 
-    public SubcategoryResponse(String name, Category category) {
-        this.name = name;
-        this.category = category;
+    public SubcategoryResponse(Subcategory subcategory) {
+        this.name = subcategory.getName();
+        this.category = subcategory.getCategory();
     }
 }

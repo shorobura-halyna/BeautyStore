@@ -1,11 +1,12 @@
 package com.beautystore.controller;
 
-import com.beautystore.model.Brand;
+import com.beautystore.dto.response.CategoryResponse;
+import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Category;
 import com.beautystore.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,16 +23,17 @@ public class CategoryController {
         return HttpStatus.OK;
     }
 
-    //    @RequestMapping(value = "/category", method = RequestMethod.GET)
-//    @GetMapping("/category")
-    @GetMapping
-    public HttpStatus find(Model model) {
-        model.addAttribute("categories", categoryService.findAll());
-        return HttpStatus.OK;
+    @GetMapping()
+    public DataResponse<CategoryResponse> findAll(@RequestParam Integer page,
+                                                  @RequestParam Integer size,
+                                                  @RequestParam String sortBy,
+                                                  @RequestParam Sort.Direction direction,
+                                                  @RequestParam(required = false) String name) {
+        return categoryService.findAll(page, size, sortBy, direction, name);
     }
 
     @GetMapping("{id}")
-    public HttpStatus delete(@RequestParam int id) {
+    public HttpStatus delete(@PathVariable int id) {
         categoryService.delete(id);
         return HttpStatus.OK;
     }

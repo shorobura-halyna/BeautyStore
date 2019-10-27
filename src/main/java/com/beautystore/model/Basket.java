@@ -21,6 +21,6 @@ public class Basket {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToMany
-    @JoinTable (name = "Basket_Commodity", joinColumns = @JoinColumn (name = "id_basket"), inverseJoinColumns = @JoinColumn (name = "id_commodity"))
+    @JoinTable(name = "Basket_Commodity", joinColumns = @JoinColumn(name = "id_basket"), inverseJoinColumns = @JoinColumn(name = "id_commodity"))
     private List<Commodity> commodities = new ArrayList<>();
 }

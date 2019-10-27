@@ -16,6 +16,6 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
     private List<Commodity> commodities;
 }

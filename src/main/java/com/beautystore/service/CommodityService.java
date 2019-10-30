@@ -1,20 +1,22 @@
 package com.beautystore.service;
 
+import com.beautystore.dto.request.CommodityRequest;
+import com.beautystore.dto.response.CommodityResponse;
+import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Commodity;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Service
 public interface CommodityService {
+    void save(CommodityRequest commodityRequest);
     void save(Commodity commodity);
 
-    List<Commodity> findAll(Integer page,
-                            Integer size,
-                            String sortBy, @RequestParam Sort.Direction direction,
-                            @RequestParam(required = false) String name);
+    DataResponse<CommodityResponse> findAll(Integer page,
+                                            Integer size,
+                                            String sortBy,
+                                            Sort.Direction direction,
+                                            String name);
 
     void delete(int id);
 }

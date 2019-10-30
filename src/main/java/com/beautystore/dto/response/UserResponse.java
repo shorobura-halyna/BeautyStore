@@ -13,12 +13,18 @@ import java.util.stream.Collectors;
 public class UserResponse {
     private String firstName;
     private String secondName;
+    private int age;
+    private String phone;
+    private String email;
 
     private List<PurchaseResponse> purchaseResponses = new ArrayList<>();
 
     public UserResponse(User user) {
         this.firstName = user.getFirstName();
         this.secondName = user.getSecondName();
+        this.age = user.getAge();
+        this.phone = user.getPhone();
+        this.email = user.getEmail();
         this.purchaseResponses = user.getPurchases().stream()
                 .map(PurchaseResponse::new)
                 .collect(Collectors.toList());

@@ -17,7 +17,7 @@ public class CategoryResponse {
     public CategoryResponse(Category category) {
         this.name = category.getName();
         this.subcategoriesResponse = category.getSubcategories().stream()
-        .map(SubcategoryResponse::new)
-        .collect(Collectors.toList());
+                .map(SubcategoryResponse::new)
+                .collect(Collectors.toList());
     }
 }

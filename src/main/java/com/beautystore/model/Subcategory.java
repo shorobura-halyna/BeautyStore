@@ -1,25 +1,43 @@
 package com.beautystore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.beautystore.dto.request.SubcategoryRequest;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
 public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String name;
     @ManyToOne
     private Category category;
     @OneToMany(mappedBy = "subcategory")
     private List<Commodity> commodities = new ArrayList<>();
+
+    public Subcategory(SubcategoryRequest subcategoryRequest, Category category) {
+        this.name = subcategoryRequest.getName();
+        this.category = category;
+    }
+
+    public Subcategory(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Subcategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -2,7 +2,6 @@ package com.beautystore.controller;
 
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.PurchaseResponse;
-import com.beautystore.model.Purchase;
 import com.beautystore.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -14,22 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
-
-    @PostMapping
-    public HttpStatus save(@RequestParam int id) {
-        Purchase purchase = new Purchase();
-        purchase.setId(id);
-        purchaseService.save(purchase);
-        return HttpStatus.OK;
-    }
-
-    @PutMapping
-    public HttpStatus update(@RequestParam int id) {
-        Purchase purchase = new Purchase();
-        purchase.setId(id);
-        purchaseService.save(purchase);
-        return HttpStatus.OK;
-    }
 
     @GetMapping
     public DataResponse<PurchaseResponse> findAll(@RequestParam Integer page,

@@ -1,14 +1,13 @@
 package com.beautystore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,4 +22,12 @@ public class Basket {
     @ManyToMany
     @JoinTable(name = "Basket_Commodity", joinColumns = @JoinColumn(name = "id_basket"), inverseJoinColumns = @JoinColumn(name = "id_commodity"))
     private List<Commodity> commodities = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Basket{" +
+                "id=" + id +
+                ", amount=" + amount +
+                '}';
+    }
 }

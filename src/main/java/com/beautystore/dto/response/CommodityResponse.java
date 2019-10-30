@@ -1,6 +1,5 @@
 package com.beautystore.dto.response;
 
-import com.beautystore.model.Brand;
 import com.beautystore.model.Commodity;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,11 +9,11 @@ import lombok.Setter;
 public class CommodityResponse {
     private String name;
     private int price;
-    private Brand brand;
+    private String brand;
 
     public CommodityResponse(Commodity commodity) {
         this.name = commodity.getName();
         this.price = commodity.getPrice();
-        this.brand = commodity.getBrand();
+        this.brand = commodity.getBrand().getName();
     }
 }

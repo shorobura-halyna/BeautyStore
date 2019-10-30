@@ -1,10 +1,14 @@
 package com.beautystore.dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class DataResponse<T> {
     private List<T> data = new ArrayList<>();
     private Integer page;

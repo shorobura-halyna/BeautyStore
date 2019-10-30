@@ -1,14 +1,18 @@
 package com.beautystore.service.impl;
 
 import com.beautystore.dao.CommodityDao;
+import com.beautystore.dto.request.CommodityRequest;
+import com.beautystore.dto.response.CommodityResponse;
+import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Commodity;
 import com.beautystore.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommodityServiceImpl implements CommodityService {
@@ -16,18 +20,33 @@ public class CommodityServiceImpl implements CommodityService {
     private CommodityDao commodityDao;
 
     @Override
-    public void save(Commodity commodity) {
+    public void save(CommodityRequest commodityRequest) {
 //        commodity.setName(commodity.getName().toUpperCase());
-        commodityDao.save(commodity);
-
+        commodityDao.save(new Commodity(commodityRequest));
     }
 
     @Override
-    public List<Commodity> findAll(Integer page,
-                                   Integer size,
-                                   String sortBy, @RequestParam Sort.Direction direction,
-                                   @RequestParam(required = false) String name) {
-        return commodityDao.findAll();
+    public void save(Commodity commodity) {
+        commodityDao.save(commodity);
+    }
+
+    @Override
+    public DataResponse<CommodityResponse> findAll(Integer page,
+                                                   Integer size,
+                                                   String sortBy,
+                                                   Sort.Direction direction,
+                                                   String name) {
+        Sort sort = Sort.by(direction, sortBy);
+        Page<Commodity> commodityPage;
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        if (name != null) {
+            commodityPage = commodityDao.findAllByNameLike(name, pageRequest);
+        } else {
+            commodityPage = commodityDao.findAll(pageRequest);
+        }
+        return new DataResponse<>(commodityPage.getContent().stream()
+                .map(CommodityResponse::new)
+                .collect(Collectors.toList()), commodityPage);
     }
 
     @Override

@@ -1,14 +1,14 @@
 package com.beautystore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.beautystore.dto.request.CommodityRequest;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -16,6 +16,7 @@ public class Commodity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String name;
     private int price;
     @ManyToOne
@@ -29,5 +30,22 @@ public class Commodity {
     @JoinTable(name = "Commodity_Purchase", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn(name = "id_purchase"))
     private List<Purchase> purchases = new ArrayList<>();
 
+    public Commodity(CommodityRequest commodityRequest) {
+        this.name = commodityRequest.getName();
+        this.price = commodityRequest.getPrice();
+    }
 
+    public Commodity(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Commodity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

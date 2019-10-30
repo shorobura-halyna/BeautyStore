@@ -1,14 +1,14 @@
 package com.beautystore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.beautystore.dto.request.UserRequest;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,12 +19,43 @@ public class User {
     private String firstName;
     private String secondName;
     private int age;
-    private int phone;
+    @Column(unique = true)
+    private String phone;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String login;
     private String password;
     @OneToOne(mappedBy = "user")
     private Basket basket;
     @OneToMany(mappedBy = "user")
     private List<Purchase> purchases = new ArrayList<>();
+
+    public User (UserRequest userRequest){
+        this.firstName = userRequest.getFirstName();
+        this.secondName = userRequest.getSecondName();
+        this.age = userRequest.getAge();
+        this.phone = userRequest.getPhone();
+        this.email = userRequest.getEmail();
+        this.login = userRequest.getLogin();
+        this.password = userRequest.getPassword();
+    }
+
+    public User(int id, String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", age=" + age +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

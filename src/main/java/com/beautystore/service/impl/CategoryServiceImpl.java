@@ -1,6 +1,7 @@
 package com.beautystore.service.impl;
 
 import com.beautystore.dao.CategoryDao;
+import com.beautystore.dto.request.CategoryRequest;
 import com.beautystore.dto.response.CategoryResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Category;
@@ -19,8 +20,13 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
 
     @Override
+    public void save(CategoryRequest categoryRequest) {
+        categoryDao.save(new Category(categoryRequest));
+    }
+
+    @Override
     public void save(Category category) {
-        categoryDao.save(category);
+       categoryDao.save(category);
     }
 
     @Override
@@ -46,4 +52,6 @@ public class CategoryServiceImpl implements CategoryService {
                 .map(CategoryResponse::new)
                 .collect(Collectors.toList()), purchasePage);
     }
+
+
 }

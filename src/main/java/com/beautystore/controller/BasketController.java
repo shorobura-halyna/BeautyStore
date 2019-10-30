@@ -1,20 +1,17 @@
 package com.beautystore.controller;
 
 import com.beautystore.dto.response.BasketResponse;
-import com.beautystore.dto.response.BrandResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/basket")
 public class BasketController {
+
     @Autowired
     private BasketService basketService;
 
@@ -24,6 +21,7 @@ public class BasketController {
         return HttpStatus.OK;
     }
 
+    @GetMapping
     public DataResponse<BasketResponse> findAll(@RequestParam Integer page,
                                                 @RequestParam Integer size,
                                                 @RequestParam String sortBy,

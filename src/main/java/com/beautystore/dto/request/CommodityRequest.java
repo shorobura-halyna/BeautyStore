@@ -1,11 +1,19 @@
 package com.beautystore.dto.request;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+@Getter
+@Setter
 public class CommodityRequest {
-    @Max(240)
-    private String name;
+    @NotNull
     @NotBlank
+    private String name;
+    @Positive
     private int price;
+
 }

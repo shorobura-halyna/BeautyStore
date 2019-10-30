@@ -1,15 +1,14 @@
 package com.beautystore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -18,10 +17,24 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int totalAmount;
-    private LocalDate date;
+    private LocalDateTime date;
     @ManyToOne
     private User user;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Commodity_Purchase", joinColumns = @JoinColumn(name = "id_purchase"), inverseJoinColumns = @JoinColumn(name = "id_commodity"))
     private List<Commodity> commodities = new ArrayList<>();
+
+//    public Purchase(){
+//       this.date = LocalDateTime.now();
+//    }
+
+
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "id=" + id +
+                ", totalAmount=" + totalAmount +
+                '}';
+    }
 }

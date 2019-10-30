@@ -1,5 +1,6 @@
 package com.beautystore.controller;
 
+import com.beautystore.dto.request.CategoryRequest;
 import com.beautystore.dto.response.CategoryResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Category;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -16,10 +19,8 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public HttpStatus save(@RequestParam String categoryName) {// categoryName - назва параметру має бути та сама щой на формі
-        Category category = new Category();
-        category.setName(categoryName);
-        categoryService.save(category);
+    public HttpStatus save(@RequestBody @Valid CategoryRequest categoryRequest) {// categoryName - назва параметру має бути та сама щой на формі
+        categoryService.save(categoryRequest);
         return HttpStatus.OK;
     }
 
@@ -41,10 +42,7 @@ public class CategoryController {
     @PutMapping
     public HttpStatus update(@RequestParam int id,
                              @RequestParam String categoryName) {
-        Category category = new Category();
-        category.setId(id);
-        category.setName(categoryName);
-        categoryService.save(category);
+        categoryService.save(new Category(id, categoryName));
         return HttpStatus.OK;
     }
 

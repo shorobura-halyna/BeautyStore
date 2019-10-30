@@ -1,6 +1,6 @@
 package com.beautystore.controller;
 
-import com.beautystore.dto.response.BasketResponse;
+import com.beautystore.dto.request.BrandRequest;
 import com.beautystore.dto.response.BrandResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Brand;
@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
@@ -18,29 +20,25 @@ public class BrandController {
     private BrandService brandService;
 
     @PostMapping
-    public HttpStatus save(@RequestParam String brandName) {
-        Brand brand = new Brand();
-        brand.setName(brandName);
-        brandService.save(brand);
+    public HttpStatus save(@RequestBody @Valid BrandRequest brandRequest) {
+        brandService.save(brandRequest);
         return HttpStatus.OK;
     }
 
     @PutMapping
     public HttpStatus update(@RequestParam int id,
                              @RequestParam String brandName) {
-        Brand brand = new Brand();
-        brand.setId(id);
-        brand.setName(brandName);
-        brandService.save(brand);
+        brandService.save(new Brand(id, brandName));
         return HttpStatus.OK;
     }
 
+    @GetMapping
     public DataResponse<BrandResponse> findAll(@RequestParam Integer page,
                                                @RequestParam Integer size,
                                                @RequestParam String sortBy,
                                                @RequestParam Sort.Direction direction,
-                                               @RequestParam(required = false) String name) {
-        return brandService.findAll(page, size, sortBy, direction, name);
+                                               @RequestParam(required = false) String subcategoryName) {
+        return brandService.findAll(page, size, sortBy, direction, subcategoryName);
     }
 
     @DeleteMapping
@@ -48,6 +46,4 @@ public class BrandController {
         brandService.delete(id);
         return HttpStatus.OK;
     }
-
-
 }

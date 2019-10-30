@@ -1,5 +1,6 @@
 package com.beautystore.service;
 
+import com.beautystore.dto.request.CategoryRequest;
 import com.beautystore.dto.response.CategoryResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Category;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CategoryService {
+    void save(CategoryRequest categoryRequest);
     void save(Category category);
 
     void delete(int id);

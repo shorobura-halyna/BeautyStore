@@ -1,6 +1,7 @@
 package com.beautystore.service.impl;
 
 import com.beautystore.dao.BrandDao;
+import com.beautystore.dto.request.BrandRequest;
 import com.beautystore.dto.response.BrandResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Brand;
@@ -11,12 +12,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements BrandService {
     @Autowired
     private BrandDao brandDao;
+
+    @Override
+    public void save(BrandRequest brandRequest) {
+        brandDao.save(new Brand(brandRequest));
+    }
 
     @Override
     public void save(Brand brand) {
@@ -30,10 +37,10 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public DataResponse<BrandResponse> findAll(Integer page,
-                                                Integer size,
-                                                String sortBy,
-                                                Sort.Direction direction,
-                                                String name) {
+                                               Integer size,
+                                               String sortBy,
+                                               Sort.Direction direction,
+                                               String name) {
         Sort sort = Sort.by(direction, sortBy);
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         Page<Brand> brandPage;
@@ -42,11 +49,9 @@ public class BrandServiceImpl implements BrandService {
         } else {
             brandPage = brandDao.findAll(pageRequest);
         }
-        return new DataResponse<>(brandPage.getContent().stream()
-             .map(BrandResponse::new)
-                .collect(Collectors.toList()), brandPage);
+        List<BrandResponse> brandResponses = brandPage.getContent().stream()
+                .map(BrandResponse::new)
+                .collect(Collectors.toList());
+        return new DataResponse<>(brandResponses, brandPage);
     }
-
-
-
 }

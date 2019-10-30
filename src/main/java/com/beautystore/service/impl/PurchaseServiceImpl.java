@@ -19,11 +19,6 @@ public class PurchaseServiceImpl implements PurchaseService {
     private PurchaseDao purchaseDao;
 
     @Override
-    public void save(Purchase purchase) {
-        purchaseDao.save(purchase);
-    }
-
-    @Override
     public DataResponse<PurchaseResponse> findAll(Integer page,
                                                   Integer size,
                                                   String sortBy,

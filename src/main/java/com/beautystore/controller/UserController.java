@@ -1,5 +1,7 @@
 package com.beautystore.controller;
 
+import com.beautystore.dto.request.FilterUserRequest;
+import com.beautystore.dto.request.UserRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.UserResponse;
 import com.beautystore.model.User;
@@ -9,6 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -16,22 +21,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public HttpStatus save(@RequestParam String userFirstName,
-                           @RequestParam String userSecondName) {
-        User user = new User();
-        user.setFirstName(userFirstName);
-        user.setSecondName(userSecondName);
-        userService.save(user);
+    public HttpStatus save(@RequestBody @Valid UserRequest userRequest) {
+        userService.save(userRequest);
         return HttpStatus.OK;
     }
 
     @PutMapping
     public HttpStatus update(@RequestParam int id,
-                             @RequestParam int phone) {
-        User user = new User();
-        user.setId(id);
-        user.setPhone(phone);
-        userService.save(user);
+                             @RequestParam String phone) {
+        userService.save(new User(id, phone));
         return HttpStatus.OK;
     }
 
@@ -48,6 +46,11 @@ public class UserController {
     public HttpStatus delete(@RequestParam int id) {
         userService.delete(id);
         return HttpStatus.OK;
+    }
+
+    @PostMapping("/filter")
+    public List<UserResponse> filter(@RequestBody FilterUserRequest filterUserRequest){
+        return userService.filter(filterUserRequest);
     }
 
 }

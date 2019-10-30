@@ -21,7 +21,6 @@ public class BasketResponse {
         this.commodities = basket.getCommodities().stream()
                 .map(CommodityResponse::new)
                 .collect(Collectors.toList());
-
     }
 }
 

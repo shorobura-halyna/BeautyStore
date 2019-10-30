@@ -9,5 +9,4 @@ public interface PurchaseDao extends JpaRepository<Purchase, Integer> {
     void findAllByCommoditiesContaining(String commodity);
 
     Page<Purchase> findAllById(Integer id, Pageable pageable);
-
 }

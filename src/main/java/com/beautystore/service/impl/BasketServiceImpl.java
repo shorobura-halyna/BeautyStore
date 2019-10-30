@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,10 +25,10 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public DataResponse<BasketResponse> findAll(Integer page,
-                                Integer size,
-                                String sortBy,
-                                Sort.Direction direction,
-                                Integer id) {
+                                                Integer size,
+                                                String sortBy,
+                                                Sort.Direction direction,
+                                                Integer id) {
         Sort sort = Sort.by(direction, sortBy);
         Page<Basket> basketPage;
         PageRequest pageRequest = PageRequest.of(page, size, sort);

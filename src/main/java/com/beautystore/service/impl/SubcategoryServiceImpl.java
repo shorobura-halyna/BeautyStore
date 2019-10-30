@@ -2,6 +2,7 @@ package com.beautystore.service.impl;
 
 import com.beautystore.dao.CategoryDao;
 import com.beautystore.dao.SubcategoryDao;
+import com.beautystore.dto.request.SubcategoryRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.SubcategoryResponse;
 import com.beautystore.model.Category;
@@ -34,8 +35,14 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
+    public void save(SubcategoryRequest subcategoryRequest) {
+        Category category = categoryDao.findByName(subcategoryRequest.getCategoryName());
+        subcategoryDao.save(new Subcategory(subcategoryRequest, category));
+    }
+
+    @Override
     public void save(Subcategory subcategory) {
-        subcategoryDao.save(subcategory);
+    subcategoryDao.save(subcategory);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.beautystore.controller;
 
+import com.beautystore.dto.request.SubcategoryRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.SubcategoryResponse;
 import com.beautystore.model.Subcategory;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/subcategory")
@@ -20,9 +23,8 @@ public class SubcategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public HttpStatus save(@RequestParam String subcategoryName,
-                           @RequestParam int categoryId) {
-        subcategoryService.save(subcategoryName, categoryId);
+    public HttpStatus save(@RequestBody @Valid SubcategoryRequest subcategoryRequest) {
+        subcategoryService.save(subcategoryRequest);
         return HttpStatus.OK;
     }
 
@@ -38,17 +40,14 @@ public class SubcategoryController {
                                                      @RequestParam Integer size,
                                                      @RequestParam String sortBy,
                                                      @RequestParam Sort.Direction direction,
-                                                     @RequestParam(required = false) String secondName) {
-        return subcategoryService.findAll(page, size, sortBy, direction, secondName);
+                                                     @RequestParam(required = false) String name) {
+        return subcategoryService.findAll(page, size, sortBy, direction, name);
     }
 
     @PutMapping
     public HttpStatus update(@RequestParam int id,
                              @RequestParam String subcategoryName) {
-        Subcategory subcategory = new Subcategory();
-        subcategory.setId(id);
-        subcategory.setName(subcategoryName);
-        subcategoryService.save(subcategory);
+        subcategoryService.save(new Subcategory(id, subcategoryName));
         return HttpStatus.OK;
     }
 

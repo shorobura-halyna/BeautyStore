@@ -1,7 +1,7 @@
 package com.beautystore.specification;
 
-import com.beautystore.dto.request.FilterUserRequest;
-import com.beautystore.dto.request.OneFilterUserRequest;
+import com.beautystore.dto.request.filter.FilterUserRequest;
+import com.beautystore.dto.request.filter.OneFilterUserRequest;
 import com.beautystore.model.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,11 +24,11 @@ public class UserSpecification implements Specification<User> {
         this.filterUserRequest = filterUserRequest;
     }
 
-    private Predicate filterByAge(Root<User> root, CriteriaBuilder criteriaBuilder, OneFilterUserRequest oneFilterUserRequest){
-        if (oneFilterUserRequest.getFirstValue() !=null && oneFilterUserRequest.getSecondValue() !=null){
+    private Predicate filterByAge(Root<User> root, CriteriaBuilder criteriaBuilder, OneFilterUserRequest oneFilterUserRequest) {
+        if (oneFilterUserRequest.getFirstValue() != null && oneFilterUserRequest.getSecondValue() != null) {
             return criteriaBuilder.between(root.get("age"), Integer.parseInt(oneFilterUserRequest.getFirstValue()),
                     Integer.parseInt(oneFilterUserRequest.getSecondValue()));
-        }else {
+        } else {
             return criteriaBuilder.conjunction();
         }
     }
@@ -38,7 +38,7 @@ public class UserSpecification implements Specification<User> {
         return createFilter(root, criteriaBuilder);
     }
 
-    private Predicate createFilter(Root<User> root, CriteriaBuilder criteriaBuilder){
+    private Predicate createFilter(Root<User> root, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
         filterUserRequest.getOneFilterUserRequests().forEach(oneFilterUserRequest -> {
             switch (oneFilterUserRequest.getUserSearchCriteria()) {

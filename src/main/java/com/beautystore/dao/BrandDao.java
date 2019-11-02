@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface BrandDao extends JpaRepository<Brand, Integer> {
+public interface BrandDao extends JpaRepository<Brand, Integer>{
     @Query(value = "select b from Brand b left join fetch b.commodities where b.id=: id")
     Brand findBrandWithCommodities(@Param("id") int id);
 

@@ -1,8 +1,11 @@
 package com.beautystore.controller;
 
 import com.beautystore.dto.request.CommodityRequest;
+import com.beautystore.dto.request.filter.FilterCommodityRequest;
+import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.response.CommodityResponse;
 import com.beautystore.dto.response.DataResponse;
+import com.beautystore.dto.response.UserResponse;
 import com.beautystore.model.Commodity;
 import com.beautystore.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/commodity")
@@ -44,5 +48,10 @@ public class CommodityController {
     public HttpStatus delete(@RequestParam int id) {
         commodityService.delete(id);
         return HttpStatus.OK;
+    }
+
+    @PostMapping("/filter")
+    public List<CommodityResponse> filter(@RequestBody FilterCommodityRequest filterCommodityRequest){
+        return commodityService.filter(filterCommodityRequest);
     }
 }

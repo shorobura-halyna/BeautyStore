@@ -14,5 +14,4 @@ public interface PurchaseService {
                                            String sortBy,
                                            Sort.Direction direction,
                                            Integer id);
-
 }

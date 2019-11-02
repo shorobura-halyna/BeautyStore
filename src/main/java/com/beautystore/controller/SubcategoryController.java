@@ -28,13 +28,6 @@ public class SubcategoryController {
         return HttpStatus.OK;
     }
 
-//    @GetMapping
-//    public HttpStatus find(Model model){
-//        model.addAttribute("subcategories", subcategoryService.findAll());
-//        model.addAttribute("categories", categoryService.findAll());
-//        return HttpStatus.OK;
-//    }
-
     @GetMapping
     public DataResponse<SubcategoryResponse> findAll(@RequestParam Integer page,
                                                      @RequestParam Integer size,

@@ -2,16 +2,22 @@ package com.beautystore.service.impl;
 
 import com.beautystore.dao.CommodityDao;
 import com.beautystore.dto.request.CommodityRequest;
+import com.beautystore.dto.request.filter.FilterCommodityRequest;
+import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.response.CommodityResponse;
 import com.beautystore.dto.response.DataResponse;
+import com.beautystore.dto.response.UserResponse;
 import com.beautystore.model.Commodity;
 import com.beautystore.service.CommodityService;
+import com.beautystore.specification.CommoditySpecification;
+import com.beautystore.specification.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,4 +59,13 @@ public class CommodityServiceImpl implements CommodityService {
     public void delete(int id) {
         commodityDao.deleteById(id);
     }
+
+    @Override
+    public List<CommodityResponse> filter(FilterCommodityRequest filterCommodityRequest) {
+        CommoditySpecification commoditySpecification = new CommoditySpecification(filterCommodityRequest);
+        return commodityDao.findAll(commoditySpecification).stream()
+                .map(CommodityResponse::new)
+                .collect(Collectors.toList());
+    }
+
 }

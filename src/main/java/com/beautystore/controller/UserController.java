@@ -1,6 +1,6 @@
 package com.beautystore.controller;
 
-import com.beautystore.dto.request.FilterUserRequest;
+import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.request.UserRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.UserResponse;

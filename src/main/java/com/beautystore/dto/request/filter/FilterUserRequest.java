@@ -1,4 +1,4 @@
-package com.beautystore.dto.request;
+package com.beautystore.dto.request.filter;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.util.List;
 public class FilterUserRequest {
 //    private Integer ageFrom;
 //    private Integer ageTo;
-////    private Integer ageMoreThem;
+//    private Integer ageMoreThem;
 
     List<OneFilterUserRequest> oneFilterUserRequests = new ArrayList<>();
 }

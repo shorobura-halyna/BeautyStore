@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Setter
 public class CategoryResponse {
     private String name;
-    private List<SubcategoryResponse> subcategoriesResponse = new ArrayList<>();
+    private List<SubcategoryResponse> subcategoriesResponse;
 
     public CategoryResponse(Category category) {
         this.name = category.getName();

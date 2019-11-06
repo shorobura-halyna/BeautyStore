@@ -4,7 +4,6 @@ import com.beautystore.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,7 @@ public class UserResponse {
     private String phone;
     private String email;
 
-    private List<PurchaseResponse> purchaseResponses = new ArrayList<>();
+    private List<PurchaseResponse> purchaseResponses;
 
     public UserResponse(User user) {
         this.firstName = user.getFirstName();

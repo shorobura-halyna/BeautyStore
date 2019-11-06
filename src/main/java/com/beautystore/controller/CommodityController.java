@@ -2,10 +2,8 @@ package com.beautystore.controller;
 
 import com.beautystore.dto.request.CommodityRequest;
 import com.beautystore.dto.request.filter.FilterCommodityRequest;
-import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.response.CommodityResponse;
 import com.beautystore.dto.response.DataResponse;
-import com.beautystore.dto.response.UserResponse;
 import com.beautystore.model.Commodity;
 import com.beautystore.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;

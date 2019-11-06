@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/brand")
+@CrossOrigin
 public class BrandController {
 
     @Autowired

@@ -42,6 +42,7 @@ public class User {
     }
 
     public User(int id, String phone) {
+        this.id = id;
         this.phone = phone;
     }
 

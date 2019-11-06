@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
@@ -33,8 +34,8 @@ public class CategoryController {
         return categoryService.findAll(page, size, sortBy, direction, name);
     }
 
-    @GetMapping("{id}")
-    public HttpStatus delete(@PathVariable int id) {
+    @DeleteMapping
+    public HttpStatus delete(@RequestParam int id) {
         categoryService.delete(id);
         return HttpStatus.OK;
     }

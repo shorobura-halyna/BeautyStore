@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/subcategory")
+@CrossOrigin
 public class SubcategoryController {
     @Autowired
     private SubcategoryService subcategoryService;

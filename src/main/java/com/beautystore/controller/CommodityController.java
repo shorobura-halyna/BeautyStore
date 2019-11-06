@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/commodity")
+@CrossOrigin
 public class CommodityController {
     @Autowired
     private CommodityService commodityService;

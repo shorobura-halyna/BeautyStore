@@ -20,7 +20,7 @@ public class Subcategory {
     private String name;
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "subcategory")
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.REMOVE)
     private List<Commodity> commodities = new ArrayList<>();
 
     public Subcategory(SubcategoryRequest subcategoryRequest, Category category) {

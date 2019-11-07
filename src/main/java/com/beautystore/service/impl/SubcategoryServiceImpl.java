@@ -36,7 +36,7 @@ public class SubcategoryServiceImpl implements SubcategoryService {
 
     @Override
     public void save(SubcategoryRequest subcategoryRequest) {
-        Category category = categoryDao.findByName(subcategoryRequest.getCategoryName());
+        Category category = categoryDao.getOne(subcategoryRequest.getCategoryId());
         subcategoryDao.save(new Subcategory(subcategoryRequest, category));
     }
 

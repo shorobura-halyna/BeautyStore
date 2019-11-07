@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class BrandRequest {
+    private int id;
     @NotNull
     @NotBlank
     private String name;

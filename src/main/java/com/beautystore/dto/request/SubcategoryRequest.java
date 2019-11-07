@@ -13,6 +13,5 @@ public class SubcategoryRequest {
     @NotBlank
     private String name;
     @NotNull
-    @NotBlank
-    private String categoryName;
+    private int categoryId;
 }

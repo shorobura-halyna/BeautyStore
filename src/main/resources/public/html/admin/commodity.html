@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Commodity</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -18,6 +18,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../../js/admin/commodity.js"></script>
 </head>
 <body>
 
@@ -31,63 +33,55 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">User</a>
+                    <a class="nav-link" href="http://localhost:63342/BeautyStore/public/html/admin/user.html">User</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Purchase</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Brand</a>
+                    <a class="nav-link" href="http://localhost:63342/BeautyStore/public/html/admin/brand.html">Brand</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Commodity</a>
+                    <a class="nav-link" href="http://localhost:63342/BeautyStore/public/html/admin/commodity.html">Commodity</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Category</a>
+                    <a class="nav-link" href="http://localhost:63342/BeautyStore/public/html/admin/category.html">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">SubCategory</a>
+                    <a class="nav-link" href="http://localhost:63342/BeautyStore/public/html/admin/subcategory.html">SubCategory</a>
                 </li>
-
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+                <button class="btn btn-outline-success my-4 my-sm-0" type="submit">Logout</button>
             </form>
         </div>
     </nav>
-    <table class="table table-hover">
+    <div class="form-inline">
+        <div class="form-group mx-sm-1 mb-3">
+            <input type="text" class="form-control" id="name" placeholder="name">
+            <input type="text" class="form-control" id="price" placeholder="price">
+<!--            <input type="text" class="form-control" id="brand" placeholder="brand">-->
+<!--            <input type="text" class="form-control" id="subcategory" placeholder="subcategory">-->
+<!--            <input type="text" class="form-control" id="category" placeholder="category">-->
+        </div>
+        <button type="submit" class="btn btn-success mb-3" onclick="save()">Add new commodity</button>
+    </div>
+    <table id="categories" class="table table-hover">
         <thead>
         <tr>
             <th scope="col">id</th>
             <th scope="col">Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Commodity</th>
-
-            <th scope="col"><button type="button" class="btn btn-success">Add</button></th>
+            <th scope="col">Price</th>
+<!--            <th scope="col">Brand</th>-->
+<!--            <th scope="col">Subcategory</th>-->
+<!--            <th scope="col">Category</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><button type="button" class="btn btn-primary btn-sm">update</button></td>
-            <td><button type="button" class="btn btn-primary btn-sm btn-danger">delete</button></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
         </tbody>
     </table>
 </div>
+
+
 </body>
 </html>

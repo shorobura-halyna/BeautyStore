@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class UserResponse {
+    private int id;
     private String firstName;
     private String secondName;
     private int age;
@@ -19,6 +20,7 @@ public class UserResponse {
     private List<PurchaseResponse> purchaseResponses;
 
     public UserResponse(User user) {
+        this.id = user.getId();
         this.firstName = user.getFirstName();
         this.secondName = user.getSecondName();
         this.age = user.getAge();

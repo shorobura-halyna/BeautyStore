@@ -1,5 +1,6 @@
 package com.beautystore.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,9 +24,9 @@ public class UserRequest {
     @Positive
     @Max(value = 100)
     private int age;
-    @NotNull
-    @NotBlank
+    @JsonIgnoreProperties
     private String login;
-    @Size(min = 8)
+    @Size(min = 5)
+    @JsonIgnoreProperties
     private String password;
 }

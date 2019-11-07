@@ -26,8 +26,8 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void save(Brand brand) {
-        brandDao.save(brand);
+    public void update(BrandRequest brandRequest) {
+        brandDao.save(new Brand(brandRequest.getId(), brandRequest.getName()));
     }
 
     @Override

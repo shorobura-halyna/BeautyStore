@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>User</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -19,7 +19,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../../js/admin/brand.js"></script>
+    <script src="../../js/admin/user.js"></script>
 </head>
 <body>
 
@@ -57,20 +57,25 @@
         </div>
     </nav>
     <div class="form-inline">
-        <div class="form-group mx-sm-3 mb-2">
-            <input type="text" class="form-control" id="brandName" placeholder="brand name">
+        <div class="form-group mx-sm-1 mb-3">
+            <input type="text" class="form-control" id="firstName" placeholder="first name">
+            <input type="text" class="form-control" id="secondName" placeholder="second name">
+            <input type="text" class="form-control" id="age" placeholder="age">
+            <input type="text" class="form-control" id="phone" placeholder="phone">
+            <input type="text" class="form-control" id="email" placeholder="email">
+
         </div>
-        <div id="saveBrand">
-            <button type="submit" class="btn btn-success mb-2" onclick="save()">Add brand</button>
-        </div>
+        <button type="submit" class="btn btn-success mb-2" onclick="save()">Add new user</button>
     </div>
-    <table id="brands" class="table table-hover">
+    <table id="users" class="table table-hover">
         <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Second Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
         </tr>
         </thead>
         <tbody>

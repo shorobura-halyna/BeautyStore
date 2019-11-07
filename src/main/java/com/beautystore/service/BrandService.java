@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BrandService {
     void save(BrandRequest brandRequest);
-    void save(Brand brand);
+    void update(BrandRequest brandRequest);
 
     void delete(int id);
 

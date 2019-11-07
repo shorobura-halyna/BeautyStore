@@ -27,9 +27,8 @@ public class BrandController {
     }
 
     @PutMapping
-    public HttpStatus update(@RequestParam int id,
-                             @RequestParam String brandName) {
-        brandService.save(new Brand(id, brandName));
+    public HttpStatus update(@RequestBody @Valid BrandRequest brandRequest) {
+        brandService.update(brandRequest);
         return HttpStatus.OK;
     }
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface SubcategoryService {
     void save(SubcategoryRequest subcategoryRequest);
-    void save(Subcategory subcategory);
+    void update(SubcategoryRequest subcategoryRequest);
 
     void delete(int id);
 

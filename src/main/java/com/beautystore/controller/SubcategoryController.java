@@ -39,9 +39,8 @@ public class SubcategoryController {
     }
 
     @PutMapping
-    public HttpStatus update(@RequestParam int id,
-                             @RequestParam String subcategoryName) {
-        subcategoryService.save(new Subcategory(id, subcategoryName));
+    public HttpStatus update(@RequestBody @Valid SubcategoryRequest subcategoryRequest) {
+        subcategoryService.update(subcategoryRequest);
         return HttpStatus.OK;
     }
 

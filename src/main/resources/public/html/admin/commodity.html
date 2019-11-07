@@ -58,23 +58,31 @@
     </nav>
     <div class="form-inline">
         <div class="form-group mx-sm-1 mb-3">
-            <input type="text" class="form-control" id="name" placeholder="name">
-            <input type="text" class="form-control" id="price" placeholder="price">
-<!--            <input type="text" class="form-control" id="brand" placeholder="brand">-->
-<!--            <input type="text" class="form-control" id="subcategory" placeholder="subcategory">-->
-<!--            <input type="text" class="form-control" id="category" placeholder="category">-->
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" id="commodityName" placeholder="name">
+                <input type="number" class="form-control" id="commodityPrice" placeholder="price">
+                <div class="input-group">
+                    <select class="custom-select" id="subcategoryDropdown">
+                    </select>
+                    <select class="custom-select" id="brandDropdown">
+                    </select>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-success mb-3" onclick="save()">Add new commodity</button>
+        <div id="saveCommodity">
+            <button type="submit" class="btn btn-success mb-3" onclick="save()">Add new commodity</button>
+        </div>
     </div>
-    <table id="categories" class="table table-hover">
+    <table id="commodities" class="table table-hover">
         <thead>
         <tr>
             <th scope="col">id</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-<!--            <th scope="col">Brand</th>-->
-<!--            <th scope="col">Subcategory</th>-->
-<!--            <th scope="col">Category</th>-->
+            <th scope="col">Brand</th>
+            <th scope="col">Subcategory</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>

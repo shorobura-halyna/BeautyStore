@@ -41,6 +41,11 @@ public class BrandController {
         return brandService.findAll(page, size, sortBy, direction, subcategoryName);
     }
 
+    @GetMapping("/all")
+    public DataResponse<BrandResponse> findAll() {
+        return brandService.findAll();
+    }
+
     @DeleteMapping
     public HttpStatus delete(@RequestParam int id) {
         brandService.delete(id);

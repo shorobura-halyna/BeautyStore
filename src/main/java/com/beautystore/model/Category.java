@@ -18,7 +18,7 @@ public class Category {
     private int id;
     @Column(unique = true)
     private String name;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "category")
     private List<Subcategory> subcategories = new ArrayList<>();
 
     public Category(CategoryRequest categoryRequest) {

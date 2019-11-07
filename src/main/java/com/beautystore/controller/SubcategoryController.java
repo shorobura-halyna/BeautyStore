@@ -38,6 +38,11 @@ public class SubcategoryController {
         return subcategoryService.findAll(page, size, sortBy, direction, name);
     }
 
+    @GetMapping("/all")
+    public DataResponse<SubcategoryResponse> findAll() {
+        return subcategoryService.findAll();
+    }
+
     @PutMapping
     public HttpStatus update(@RequestBody @Valid SubcategoryRequest subcategoryRequest) {
         subcategoryService.update(subcategoryRequest);

@@ -21,4 +21,5 @@ public interface SubcategoryService {
                                               String sortBy,
                                               Sort.Direction direction,
                                               String subcategoryName);
+    DataResponse<SubcategoryResponse> findAll();
 }

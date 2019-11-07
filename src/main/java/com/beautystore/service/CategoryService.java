@@ -19,4 +19,5 @@ public interface CategoryService {
                                            String sortBy,
                                            Sort.Direction direction,
                                            String name);
+    DataResponse<CategoryResponse> findAll();
 }

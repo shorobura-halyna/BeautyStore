@@ -24,12 +24,6 @@ public class Purchase {
     @JoinTable(name = "Commodity_Purchase", joinColumns = @JoinColumn(name = "id_purchase"), inverseJoinColumns = @JoinColumn(name = "id_commodity"))
     private List<Commodity> commodities = new ArrayList<>();
 
-//    public Purchase(){
-//       this.date = LocalDateTime.now();
-//    }
-
-
-
     @Override
     public String toString() {
         return "Purchase{" +

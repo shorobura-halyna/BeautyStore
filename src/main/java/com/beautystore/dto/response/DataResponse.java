@@ -15,6 +15,10 @@ public class DataResponse<T> {
     private Integer size;
     private Long totalEl;
 
+    public DataResponse(List<T> data){
+        this.data = data;
+    }
+
     public DataResponse(List<T> data, Page page) {
         this.data = data;
         this.size = page.getSize();

@@ -28,7 +28,7 @@ public class User {
     private String password;
     @OneToOne(mappedBy = "user")
     private Basket basket;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Purchase> purchases = new ArrayList<>();
 
     public User (UserRequest userRequest){

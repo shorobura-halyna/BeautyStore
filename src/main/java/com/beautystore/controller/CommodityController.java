@@ -28,9 +28,8 @@ public class CommodityController {
     }
 
     @PutMapping
-    public HttpStatus update(@RequestParam int id,
-                             @RequestParam String commodityName) {
-       commodityService.save(new Commodity(id, commodityName));
+    public HttpStatus update(@RequestBody @Valid CommodityRequest commodityRequest) {
+       commodityService.save(commodityRequest);
         return HttpStatus.OK;
     }
 

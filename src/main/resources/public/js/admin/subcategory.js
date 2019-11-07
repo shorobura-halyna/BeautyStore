@@ -81,7 +81,7 @@ init();
 function initCategoryDropdown() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/category?direction=ASC&page=0&size=100&sortBy=id', //  TODO: add pagination f...
+        url: 'http://localhost:8080/category/all', //  TODO: add pagination f...
         contentType: 'application/json; charset=UTF-8',
         dataType: 'json',
         headers: {'Access-Control-Allow-Origin': '*'},
@@ -114,7 +114,6 @@ function cancel() {
     $('#saveSubcategory').html("<button class='btn btn-success mb-2' onclick='save()'>Add subcategory</button>");
     $('#subcategoryName').val(''); //clean val from input
     initCategoryDropdown();
-
 }
 
 //save new value of category

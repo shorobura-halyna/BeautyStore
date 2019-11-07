@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public interface CommodityService {
     void save(CommodityRequest commodityRequest);
-    void save(Commodity commodity);
+    void update(CommodityRequest commodityRequest);
 
     DataResponse<CommodityResponse> findAll(Integer page,
                                             Integer size,

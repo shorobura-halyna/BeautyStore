@@ -1,10 +1,12 @@
 package com.beautystore.service.impl;
 
 import com.beautystore.dao.CategoryDao;
+import com.beautystore.dao.SubcategoryDao;
 import com.beautystore.dto.request.CategoryRequest;
 import com.beautystore.dto.response.CategoryResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Category;
+import com.beautystore.model.Subcategory;
 import com.beautystore.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryDao categoryDao;
+    @Autowired
+    private SubcategoryDao subcategoryDao;
 
     @Override
     public void save(CategoryRequest categoryRequest) {
@@ -29,8 +33,17 @@ public class CategoryServiceImpl implements CategoryService {
        categoryDao.save(new Category(categoryRequest.getId(), categoryRequest.getName()));
     }
 
+    /**
+     * detach category subcategories from this category
+     * and delete this category
+     * */
     @Override
     public void delete(int id) {
+        Category category = categoryDao.getOne(id);
+        for (Subcategory subcategory : category.getSubcategories()) {
+            subcategory.setCategory(null);
+            subcategoryDao.save(subcategory);
+        }
         categoryDao.deleteById(id);
     }
 
@@ -53,5 +66,10 @@ public class CategoryServiceImpl implements CategoryService {
                 .collect(Collectors.toList()), purchasePage);
     }
 
-
+    @Override
+    public DataResponse<CategoryResponse> findAll() {
+        return new DataResponse<>(categoryDao.findAll().stream()
+                .map(CategoryResponse::new)
+                .collect(Collectors.toList()));
+    }
 }

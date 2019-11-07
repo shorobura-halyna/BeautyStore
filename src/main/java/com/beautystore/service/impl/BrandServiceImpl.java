@@ -4,7 +4,9 @@ import com.beautystore.dao.BrandDao;
 import com.beautystore.dto.request.BrandRequest;
 import com.beautystore.dto.response.BrandResponse;
 import com.beautystore.dto.response.DataResponse;
+import com.beautystore.dto.response.SubcategoryResponse;
 import com.beautystore.model.Brand;
+import com.beautystore.model.Commodity;
 import com.beautystore.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,6 +32,7 @@ public class BrandServiceImpl implements BrandService {
         brandDao.save(new Brand(brandRequest.getId(), brandRequest.getName()));
     }
 
+
     @Override
     public void delete(int id) {
         brandDao.deleteById(id);
@@ -53,5 +56,12 @@ public class BrandServiceImpl implements BrandService {
                 .map(BrandResponse::new)
                 .collect(Collectors.toList());
         return new DataResponse<>(brandResponses, brandPage);
+    }
+
+    @Override
+    public DataResponse<BrandResponse> findAll() {
+        return new DataResponse<>(brandDao.findAll().stream()
+                .map(BrandResponse::new)
+                .collect(Collectors.toList()));
     }
 }

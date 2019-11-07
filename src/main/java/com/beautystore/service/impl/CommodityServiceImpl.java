@@ -1,11 +1,15 @@
 package com.beautystore.service.impl;
 
+import com.beautystore.dao.BrandDao;
 import com.beautystore.dao.CommodityDao;
+import com.beautystore.dao.SubcategoryDao;
 import com.beautystore.dto.request.CommodityRequest;
 import com.beautystore.dto.request.filter.FilterCommodityRequest;
 import com.beautystore.dto.response.CommodityResponse;
 import com.beautystore.dto.response.DataResponse;
+import com.beautystore.model.Brand;
 import com.beautystore.model.Commodity;
+import com.beautystore.model.Subcategory;
 import com.beautystore.service.CommodityService;
 import com.beautystore.specification.CommoditySpecification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +25,23 @@ import java.util.stream.Collectors;
 public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private CommodityDao commodityDao;
+    @Autowired
+    private SubcategoryDao subcategoryDao;
+    @Autowired
+    private BrandDao brandDao;
 
     @Override
     public void save(CommodityRequest commodityRequest) {
-//        commodity.setName(commodity.getName().toUpperCase());
-        commodityDao.save(new Commodity(commodityRequest));
+        Brand brand = brandDao.getOne(commodityRequest.getBrandId());
+        Subcategory subcategory = subcategoryDao.getOne(commodityRequest.getSubcategoryId());
+        commodityDao.save(new Commodity(commodityRequest, brand, subcategory));
     }
 
     @Override
-    public void save(Commodity commodity) {
-        commodityDao.save(commodity);
+    public void update(CommodityRequest commodityRequest) {
+        Brand brand = brandDao.getOne(commodityRequest.getBrandId());
+        Subcategory subcategory = subcategoryDao.getOne(commodityRequest.getSubcategoryId());
+        commodityDao.save(new Commodity(commodityRequest, brand, subcategory));
     }
 
     @Override

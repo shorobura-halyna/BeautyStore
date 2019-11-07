@@ -22,7 +22,6 @@ function init() {
                     '<td>' + age + '</td>' +
                     '<td>' + phone + '</td>' +
                     '<td>' + email + '</td>' +
-                    '<td><button type="button" class="btn btn-primary btn-sm">update</button></td>' +
                     '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
                     '</tr>';
             }
@@ -75,8 +74,10 @@ function save() {
     });
 }
 
+init();
+
+//remove user by id
 function remove(id) {
-    console.log(id);
     $.ajax({
         type: 'DELETE',
         url: 'http://localhost:8080/user?id=' + id,
@@ -90,5 +91,3 @@ function remove(id) {
         }
     });
 }
-
-init();

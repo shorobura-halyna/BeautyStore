@@ -30,9 +30,11 @@ public class Commodity {
     @JoinTable(name = "Commodity_Purchase", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn(name = "id_purchase"))
     private List<Purchase> purchases = new ArrayList<>();
 
-    public Commodity(CommodityRequest commodityRequest) {
+    public Commodity(CommodityRequest commodityRequest, Brand brand, Subcategory subcategory) {
         this.name = commodityRequest.getName();
         this.price = commodityRequest.getPrice();
+        this.brand = brand;
+        this.subcategory = subcategory;
     }
 
     public Commodity(int id, String name) {

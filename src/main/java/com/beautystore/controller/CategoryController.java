@@ -25,13 +25,18 @@ public class CategoryController {
         return HttpStatus.OK;
     }
 
-    @GetMapping()
+    @GetMapping
     public DataResponse<CategoryResponse> findAll(@RequestParam Integer page,
                                                   @RequestParam Integer size,
                                                   @RequestParam String sortBy,
                                                   @RequestParam Sort.Direction direction,
                                                   @RequestParam(required = false) String name) {
         return categoryService.findAll(page, size, sortBy, direction, name);
+    }
+
+    @GetMapping("/all")
+    public DataResponse<CategoryResponse> findAll() {
+        return categoryService.findAll();
     }
 
     @DeleteMapping

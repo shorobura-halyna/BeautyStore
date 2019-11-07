@@ -18,7 +18,7 @@ public class Brand {
     private int id;
     @Column(unique = true)
     private String name;
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "brand")
     private List<Commodity> commodities = new ArrayList<>();
 
     public Brand(BrandRequest brandRequest) {

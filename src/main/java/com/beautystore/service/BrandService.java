@@ -19,4 +19,5 @@ public interface BrandService {
                                         String sortBy,
                                         Sort.Direction direction,
                                         String name);
+    DataResponse<BrandResponse> findAll();
 }

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Positive;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,5 +14,4 @@ public class PurchaseRequest {
     @Positive
     private int totalAmount;
     private String date;
-    private String nameCommodity;
 }

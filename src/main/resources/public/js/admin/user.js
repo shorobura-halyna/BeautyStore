@@ -36,44 +36,6 @@ function init() {
 
     })
 }
-
-function save() {
-    var firstName = $('#firstName').val();
-    var secondName = $('#secondName').val();
-    var age = $('#age').val();
-    var phone = $('#phone').val();
-    var email = $('#email').val();
-
-    var obj = {
-        'firstName': firstName,
-        'secondName': secondName,
-        'age': age,
-        'phone': phone,
-        'email': email
-    };
-
-    $.ajax({
-        type: 'POST',
-        url: 'http://localhost:8080/user',
-        contentType: 'application/json; charset=UTF-8',
-        dataType: 'json',
-        data: JSON.stringify(obj),
-        headers: {'Access-Control-Allow-Origin': '*'},
-        success: function (response) {
-            console.log('response', response);
-            $('#firstName').val(''); //clean val from input
-            $('#secondName').val('');
-            $('#age').val('');
-            $('#phone').val('');
-            $('#email').val('');
-            init();
-        },
-        error: function (e) {
-            console.log('error', e);
-        }
-    });
-}
-
 init();
 
 //remove user by id

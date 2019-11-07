@@ -41,9 +41,8 @@ public class CategoryController {
     }
 
     @PutMapping
-    public HttpStatus update(@RequestParam int id,
-                             @RequestParam String categoryName) {
-        categoryService.save(new Category(id, categoryName));
+    public HttpStatus update(@RequestBody @Valid CategoryRequest categoryRequest) {
+        categoryService.update(categoryRequest);
         return HttpStatus.OK;
     }
 

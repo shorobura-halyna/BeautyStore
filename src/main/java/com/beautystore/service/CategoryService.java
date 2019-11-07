@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CategoryService {
     void save(CategoryRequest categoryRequest);
-    void save(Category category);
+    void update(CategoryRequest categoryRequest);
 
     void delete(int id);
 

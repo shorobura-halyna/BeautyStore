@@ -7,23 +7,23 @@ function init() {
         dataType: 'json',
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
-            var data;
+            var data = '';
             for (var i = 0; i < response.data.length; i++) {
                 var id = response.data[i].id;
                 var name = response.data[i].name;
                 var obj = {
-                    'id':id,
-                    'name':name
-                }
+                    'id': id,
+                    'name': name
+                };
                 data +=
                     '<tr>' +
-                        '<td>' + id + '</td>' +
-                        '<td>' + name + '</td>' +
-                        "<td><button type='button' class='btn btn-primary btn-sm' onclick='update ("+id+",\"" + name + "\")'>update</button></td>" +
-                        '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
+                    '<td>' + id + '</td>' +
+                    '<td>' + name + '</td>' +
+                    "<td><button type='button' class='btn btn-primary btn-sm' onclick='update (" + id + ",\"" + name + "\")'>update</button></td>" +
+                    '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
                     '</tr>';
             }
-            if (!data){
+            if (!data) {
                 data = '<tr></tr>';
             }
             $('#brands tbody').html(data);
@@ -68,8 +68,8 @@ function update(id, name) {
     console.log(id);
     console.log(name);
     $('#brandName').val(name);
-    $('#saveBrand').html("<button id='updateBrand' class='btn btn-success mx-sm-3 mb-2' onclick='saveUpdatedBrand("+id+")'>Update brand</button>" +
-        "<button id='cancel' class='btn btn-secondary mx-sm-3 mb-2' onclick='cancel("+id+")'>Cancel</button>");
+    $('#saveBrand').html("<button id='updateBrand' class='btn btn-success mx-sm-3 mb-2' onclick='saveUpdatedBrand(" + id + ")'>Update brand</button>" +
+        "<button id='cancel' class='btn btn-secondary mx-sm-3 mb-2' onclick='cancel()'>Cancel</button>");
 
 }
 
@@ -81,7 +81,7 @@ function cancel() {
 
 //save new value of brand
 function saveUpdatedBrand(id) {
-    var updatedBrandName=$('#brandName').val();
+    var updatedBrandName = $('#brandName').val();
     var obj = {
         'id': id,
         'name': updatedBrandName

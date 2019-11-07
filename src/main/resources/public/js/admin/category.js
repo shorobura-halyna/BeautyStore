@@ -6,7 +6,7 @@ function init() {
         dataType: 'json',
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
-            var data;
+            var data = '';
             for (var i = 0; i < response.data.length; i++) {
                 var id = response.data[i].id;
                 var name = response.data[i].name;
@@ -14,14 +14,14 @@ function init() {
                     '<tr>' +
                     '<td>' + id + '</td>' +
                     '<td>' + name + '</td>' +
-                    '<td><button type="button" class="btn btn-primary btn-sm">update</button></td>' +
+                    "<td><button type='button' class='btn btn-primary btn-sm' onclick='update (" + id + ",\"" + name + "\")'>update</button></td>" +
                     '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
                     '</tr>';
             }
-            if (!data){
+            if (!data) {
                 data = '<tr></tr>';
             }
-            $('#category tbody').html(data);
+            $('#categories tbody').html(data);
         },
         error: function (e) {
             console.log('error', e);
@@ -72,3 +72,46 @@ function remove(id) {
 }
 
 init();
+
+//put old category name value into input
+function update(id, name) {
+    console.log(id);
+    console.log(name);
+    $('#categoryName').val(name);
+    $('#saveCategory').html("<button id='updateCategory' class='btn btn-success mx-sm-3 mb-2' onclick='saveUpdatedCategory(" + id + ")'>Update category</button>" +
+        "<button id='cancel' class='btn btn-secondary mx-sm-3 mb-2' onclick='cancel()'>Cancel</button>");
+
+}
+
+//cancel update
+function cancel() {
+    $('#saveCategory').html("<button class='btn btn-success mb-2' onclick='save()'>Add category</button>");
+    $('#categoryName').val(''); //clean val from input
+}
+
+//save new value of category
+function saveUpdatedCategory(id) {
+    var updatedCategoryName = $('#categoryName').val();
+    var obj = {
+        'id': id,
+        'name': updatedCategoryName
+    };
+
+    $.ajax({
+        type: 'PUT',
+        url: 'http://localhost:8080/category',
+        contentType: 'application/json; charset=UTF-8',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+        headers: {'Access-Control-Allow-Origin': '*'},
+        success: function (response) {
+            console.log('response', response);
+            $('#categoryName').val(''); //clean val from input
+            $('#saveCategory').html("<button class='btn btn-success mb-2' onclick='save()'>Add category</button>");
+            init();
+        },
+        error: function (e) {
+            console.log('error', e);
+        }
+    });
+}

@@ -60,13 +60,17 @@
         <div class="form-group mx-sm-3 mb-2">
             <input type="text" class="form-control" id="categoryName" placeholder="category name">
         </div>
-        <button type="submit" class="btn btn-success mb-2" onclick="save()">Add category</button>
+        <div id="saveCategory">
+            <button type="submit" class="btn btn-success mb-2" onclick="save()">Add category</button>
+        </div>
     </div>
-    <table id="category" class="table table-hover">
+    <table id="categories" class="table table-hover">
         <thead>
         <tr>
             <th scope="col">id</th>
             <th scope="col">Name</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>

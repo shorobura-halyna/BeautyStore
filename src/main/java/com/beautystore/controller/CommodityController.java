@@ -42,6 +42,11 @@ public class CommodityController {
         return commodityService.findAll(page, size, sortBy, direction, name);
     }
 
+    @GetMapping("/one")
+    public CommodityResponse find(@RequestParam int id) {
+        return commodityService.findOne(id);
+    }
+
     @DeleteMapping
     public HttpStatus delete(@RequestParam int id) {
         commodityService.delete(id);

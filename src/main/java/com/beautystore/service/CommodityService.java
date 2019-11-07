@@ -21,6 +21,8 @@ public interface CommodityService {
                                             Sort.Direction direction,
                                             String name);
 
+    CommodityResponse findOne(int id);
+
     void delete(int id);
 
     List<CommodityResponse> filter(FilterCommodityRequest filterCommodityRequest);

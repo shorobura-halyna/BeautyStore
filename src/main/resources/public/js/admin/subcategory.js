@@ -1,7 +1,7 @@
-function init() {
+function init(page) {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/subcategory?direction=ASC&page=0&size=100&sortBy=id', //  TODO: add pagination f...
+        url: 'http://localhost:8080/subcategory?direction=ASC&page=' + page + '&size=5&sortBy=id', //  TODO: add pagination f...
         contentType: 'application/json; charset=UTF-8',
         dataType: 'json',
         headers: {'Access-Control-Allow-Origin': '*'},
@@ -25,6 +25,18 @@ function init() {
                 data = '<tr></tr>';
             }
             $('#subcategories tbody').html(data);
+            var paginationData = '';
+
+            for (var i = 0; i <= response.numberOfPages - 1; i++) {
+                var j = i + 1;
+                if (i === page) {
+                    paginationData += "<li class='page-item'><span class='page-link'>" + j + "<span class='sr-only'>(current)</span></span></li>";
+                } else {
+                    paginationData += "<li class='page-item'><a class='page-link' onclick='init(" + i + ")'>" + j + "</a></li>";
+                }
+            }
+
+            $('#pagination').html(paginationData);
         },
         error: function (e) {
             console.log('error', e);
@@ -33,15 +45,17 @@ function init() {
     })
 }
 
+init(0);
+
 function save() {
     var subcategoryName = $('#subcategoryName').val();
+
     var categoryId = $('#categoryDropdown').val();
 
     var obj = {
         'name': subcategoryName,
         'categoryId': categoryId
     };
-
     $.ajax({
         type: 'POST',
         url: 'http://localhost:8080/subcategory',
@@ -58,6 +72,7 @@ function save() {
             console.log('error', e);
         }
     });
+
 }
 
 function remove(id) {
@@ -74,9 +89,8 @@ function remove(id) {
             console.log('error', e);
         }
     });
-}
 
-init();
+}
 
 function initCategoryDropdown() {
     $.ajax({

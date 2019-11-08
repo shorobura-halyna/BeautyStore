@@ -14,8 +14,9 @@ public class DataResponse<T> {
     private Integer page;
     private Integer size;
     private Long totalEl;
+    private int numberOfPages;
 
-    public DataResponse(List<T> data){
+    public DataResponse(List<T> data) {
         this.data = data;
     }
 
@@ -24,5 +25,6 @@ public class DataResponse<T> {
         this.size = page.getSize();
         this.page = page.getNumber();
         this.totalEl = page.getTotalElements();
+        this.numberOfPages = (int) (Math.ceil((double) page.getTotalElements() / page.getSize()));
     }
 }

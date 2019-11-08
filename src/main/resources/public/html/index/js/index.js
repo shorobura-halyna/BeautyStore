@@ -1,7 +1,7 @@
-function init() {
+function init(page) {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/commodity?direction=ASC&page=0&size=100&sortBy=id', //  TODO: add pagination f...
+        url: 'http://localhost:8080/commodity?direction=ASC&page=' + page + '&size=8&sortBy=id', //  TODO: add pagination f...
         contentType: 'application/json; charset=UTF-8',
         dataType: 'json',
         headers: {'Access-Control-Allow-Origin': '*'},
@@ -32,6 +32,18 @@ function init() {
                     '</div>';
             }
             $('#commodities').html(data);
+            var paginationData = '';
+
+            for (var i = 0; i <= response.numberOfPages - 1; i++) {
+                var j = i + 1;
+                if (i === page) {
+                    paginationData += "<li class='page-item'><span class='page-link'>" + j + "<span class='sr-only'>(current)</span></span></li>";
+                } else {
+                    paginationData += "<li class='page-item'><a class='page-link' onclick='init(" + i + ")'>" + j + "</a></li>";
+                }
+            }
+
+            $('#pagination').html(paginationData);
         },
         error: function (e) {
             console.log('error', e);
@@ -39,7 +51,7 @@ function init() {
     })
 }
 
-init();
+init(0);
 
 function details(id) {
     $('#index').html('');
@@ -68,9 +80,9 @@ function renderProductDetails(commodity) {
         '            <div class="thumbnail">\n' +
         '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
         '                <div class="caption">\n' +
-        '                    <h4 class="group inner list-group-item-heading">'+ commodity.name +'</h4>\n' +
-        '                    <h6 class="group inner list-group-item-heading">'+ commodity.brand +'</h6>\n' +
-        '                    <h6 class="group inner list-group-item-heading">'+ commodity.subcategory +'</h6>\n' +
+        '                    <h4 class="group inner list-group-item-heading">' + commodity.name + '</h4>\n' +
+        '                    <h6 class="group inner list-group-item-heading">' + commodity.brand + '</h6>\n' +
+        '                    <h6 class="group inner list-group-item-heading">' + commodity.subcategory + '</h6>\n' +
         '                    <div class="row">\n' +
         '                        <div class="col-xs-12 col-md-6">\n' +
         '                            <p class="lead">' + commodity.price + '$</p>\n' +

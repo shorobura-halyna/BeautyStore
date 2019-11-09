@@ -29,7 +29,7 @@ public class CommodityController {
 
     @PutMapping
     public HttpStatus update(@RequestBody @Valid CommodityRequest commodityRequest) {
-       commodityService.save(commodityRequest);
+        commodityService.save(commodityRequest);
         return HttpStatus.OK;
     }
 
@@ -41,6 +41,12 @@ public class CommodityController {
                                                 @RequestParam(required = false) String name) {
         return commodityService.findAll(page, size, sortBy, direction, name);
     }
+
+    @GetMapping("/price/max")
+    public int find() {
+        return commodityService.getMaxPrice();
+    }
+
 
     @GetMapping("/one")
     public CommodityResponse find(@RequestParam int id) {
@@ -54,7 +60,11 @@ public class CommodityController {
     }
 
     @PostMapping("/filter")
-    public List<CommodityResponse> filter(@RequestBody FilterCommodityRequest filterCommodityRequest){
-        return commodityService.filter(filterCommodityRequest);
+    public DataResponse<CommodityResponse> filter(@RequestParam Integer page,
+                                                  @RequestParam Integer size,
+                                                  @RequestParam String sortBy,
+                                                  @RequestParam Sort.Direction direction,
+                                                  @RequestBody FilterCommodityRequest filterCommodityRequest) {
+        return commodityService.filter(page, size, sortBy, direction, filterCommodityRequest);
     }
 }

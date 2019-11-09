@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public interface CommodityService {
     void save(CommodityRequest commodityRequest);
+
     void update(CommodityRequest commodityRequest);
 
     DataResponse<CommodityResponse> findAll(Integer page,
@@ -25,5 +26,11 @@ public interface CommodityService {
 
     void delete(int id);
 
-    List<CommodityResponse> filter(FilterCommodityRequest filterCommodityRequest);
+    DataResponse<CommodityResponse> filter(Integer page,
+                                           Integer size,
+                                           String sortBy,
+                                           Sort.Direction direction,
+                                           FilterCommodityRequest filterCommodityRequest);
+
+    int getMaxPrice();
 }

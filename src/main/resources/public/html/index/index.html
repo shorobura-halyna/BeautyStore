@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -49,13 +50,19 @@
                 repellat.</p>
             <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
         </header>
+        <div class="btn-toolbar justify-content-center" style="margin: 3% 3% 3% 3%;">
+            <div>
+                <input type="range" id="priceFilter" value="0" min="0" oninput="showPriceFilterValue()"> <span id="priceFilterValue">0</span>
+                <button type="button" class="btn btn-success" onclick="applyRangeFilter()">apply filters</button>
+                <button type="button" class="btn btn-secondary" onclick="dropAllFilters()">drop all filters</button>
+            </div>
+        </div>
 
         <!-- Page Features -->
         <div id="commodities" class="row text-center">
         </div>
         <nav aria-label="Page navigation example">
             <ul id="pagination" class="pagination justify-content-center">
-
             </ul>
         </nav>
     </div>

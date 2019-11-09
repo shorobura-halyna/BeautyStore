@@ -74,11 +74,24 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<CommodityResponse> filter(FilterCommodityRequest filterCommodityRequest) {
+    public DataResponse<CommodityResponse> filter(Integer page,
+                                                  Integer size,
+                                                  String sortBy,
+                                                  Sort.Direction direction,
+                                                  FilterCommodityRequest filterCommodityRequest) {
+        Sort sort = Sort.by(direction, sortBy);
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
         CommoditySpecification commoditySpecification = new CommoditySpecification(filterCommodityRequest);
-        return commodityDao.findAll(commoditySpecification).stream()
+
+        Page<Commodity> commodityPage = commodityDao.findAll(commoditySpecification, pageRequest);
+        return new DataResponse<>(commodityPage.stream()
                 .map(CommodityResponse::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), commodityPage);
+    }
+
+    @Override
+    public int getMaxPrice() {
+        return commodityDao.findMaxPrice();
     }
 
 }

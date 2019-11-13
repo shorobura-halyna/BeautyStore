@@ -25,6 +25,6 @@ public class DataResponse<T> {
         this.size = page.getSize();
         this.page = page.getNumber();
         this.totalEl = page.getTotalElements();
-        this.numberOfPages = (int) (Math.ceil((double) page.getTotalElements() / page.getSize()));
+        this.numberOfPages = page.getTotalPages();
     }
 }

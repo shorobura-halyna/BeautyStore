@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class UserResponse {
     private int id;
     private String role;
+    private String login;
     private String email;
 
     private List<PurchaseResponse> purchaseResponses;
@@ -19,6 +20,7 @@ public class UserResponse {
     public UserResponse(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
+        this.login = user.getLogin();
         this.role = user.getRole().name();
         this.purchaseResponses = user.getPurchases().stream()
                 .map(PurchaseResponse::new)

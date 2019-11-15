@@ -9,18 +9,12 @@ function init(page) {
             var data;
             for (var i = 0; i < response.data.length; i++) {
                 var id = response.data[i].id;
-                var firstName = response.data[i].firstName;
-                var secondName = response.data[i].secondName;
-                var age = response.data[i].age;
-                var phone = response.data[i].phone;
+                var login = response.data[i].login;
                 var email = response.data[i].email;
                 data +=
                     '<tr>' +
                     '<td>' + id + '</td>' +
-                    '<td>' + firstName + '</td>' +
-                    '<td>' + secondName + '</td>' +
-                    '<td>' + age + '</td>' +
-                    '<td>' + phone + '</td>' +
+                    '<td>' + login + '</td>' +
                     '<td>' + email + '</td>' +
                     '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
                     '</tr>';

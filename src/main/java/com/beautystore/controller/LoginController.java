@@ -2,7 +2,6 @@ package com.beautystore.controller;
 
 import com.beautystore.dto.request.UserLoginRequest;
 import com.beautystore.dto.response.UserResponse;
-import com.beautystore.model.User;
 import com.beautystore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

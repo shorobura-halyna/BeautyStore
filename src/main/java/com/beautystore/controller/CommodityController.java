@@ -4,7 +4,6 @@ import com.beautystore.dto.request.CommodityRequest;
 import com.beautystore.dto.request.filter.FilterCommodityRequest;
 import com.beautystore.dto.response.CommodityResponse;
 import com.beautystore.dto.response.DataResponse;
-import com.beautystore.model.Commodity;
 import com.beautystore.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/commodity")

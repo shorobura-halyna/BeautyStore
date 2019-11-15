@@ -51,5 +51,4 @@ public class UserController {
     public List<UserResponse> filter(@RequestBody FilterUserRequest filterUserRequest){
         return userService.filter(filterUserRequest);
     }
-
 }

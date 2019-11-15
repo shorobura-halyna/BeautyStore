@@ -3,7 +3,6 @@ package com.beautystore.controller;
 import com.beautystore.dto.request.SubcategoryRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.SubcategoryResponse;
-import com.beautystore.model.Subcategory;
 import com.beautystore.service.CategoryService;
 import com.beautystore.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +53,4 @@ public class SubcategoryController {
         subcategoryService.delete(id);
         return HttpStatus.OK;
     }
-
 }

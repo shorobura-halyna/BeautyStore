@@ -3,7 +3,6 @@ package com.beautystore.controller;
 import com.beautystore.dto.request.BrandRequest;
 import com.beautystore.dto.response.BrandResponse;
 import com.beautystore.dto.response.DataResponse;
-import com.beautystore.model.Brand;
 import com.beautystore.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

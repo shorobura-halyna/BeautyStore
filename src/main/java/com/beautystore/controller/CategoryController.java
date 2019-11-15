@@ -3,7 +3,6 @@ package com.beautystore.controller;
 import com.beautystore.dto.request.CategoryRequest;
 import com.beautystore.dto.response.CategoryResponse;
 import com.beautystore.dto.response.DataResponse;
-import com.beautystore.model.Category;
 import com.beautystore.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -50,5 +49,4 @@ public class CategoryController {
         categoryService.update(categoryRequest);
         return HttpStatus.OK;
     }
-
 }

@@ -35,7 +35,10 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void delete(int id) {
-        basketDao.deleteById(id);
+        Commodity commodity = commodityDao.getOne(id);
+        Basket basket = userDao.getOne(LoginController.user.getId()).getBasket();
+        basket.getCommodities().remove(commodity);
+        basketDao.save(basket);
     }
 
     @Override

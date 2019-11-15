@@ -24,9 +24,11 @@ function init(page) {
                     '<h6 class="card-title">' + subcategory + '</h6>' +
                     '<h6 class="card-title"><b>' + price + '</b></h6>' +
                     '</div>' +
-                    '<div class="card-footer">' +
-                    "<a class='btn btn-primary' onclick='addToCart(" + id + ")'>add to cart</a> " +
-                    "<a class='btn btn-primary' onclick='details(" + id + ")'>details</a>" +
+                    '<div class="card-footer">';
+                if ('USER' === response.currentUserRole) {
+                    data += "<a class='btn btn-primary' onclick='addToCart(" + id + ")'>add to cart</a> ";
+                }
+                data += "<a class='btn btn-primary' onclick='details(" + id + ")'>details</a>" +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -138,7 +140,7 @@ function renderProductDetails(commodity) {
         '                            <p class="lead">' + commodity.price + '$</p>\n' +
         '                        </div>\n' +
         '                        <div class="col-xs-12 col-md-6">\n' +
-                                  "<a class='btn btn-primary' onclick='addToCart(" + commodity.id + ")'>add to cart</a> " +
+        "<a class='btn btn-primary' onclick='addToCart(" + commodity.id + ")'>add to cart</a> " +
         '                        </div>\n' +
         '                    </div>\n' +
         '                </div>\n' +

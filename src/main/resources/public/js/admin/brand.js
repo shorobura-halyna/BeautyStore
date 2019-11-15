@@ -110,7 +110,7 @@ function saveUpdatedBrand(id) {
             console.log('response', response);
             $('#brandName').val(''); //clean val from input
             $('#saveBrand').html("<button class='btn btn-success mb-2' onclick='save()'>Add brand</button>");
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);
@@ -126,7 +126,7 @@ function remove(id) {
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
             console.log('response', response);
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

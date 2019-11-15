@@ -53,7 +53,7 @@ function remove(id) {
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
             console.log('response', response);
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

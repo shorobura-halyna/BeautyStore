@@ -141,7 +141,7 @@ function remove(id) {
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
             console.log('response', response);
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);
@@ -198,7 +198,7 @@ function saveUpdatedCommodity(id) {
             $('#commodityName').val(''); //clean val from input
             $('#commodityPrice').val(''); //clean val from input
             $('#saveCommodity').html("<button class='btn btn-success mb-2' onclick='save()'>Add commodity</button>");
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

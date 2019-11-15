@@ -2,6 +2,8 @@ Download project from git.
 
 Run init.sql script from src/main/resources/init.sql on your mysql server.
 
+Change the password for database server in application.properties
+
 Run Java application.
 
 Open login.html file (src/main/resources/public/html/login.html).

@@ -11,5 +11,4 @@ public interface CommodityDao extends JpaRepository<Commodity, Integer>, JpaSpec
     Page<Commodity> findAllByNameLike(String name, Pageable pageable);
     @Query("select max(c.price) from Commodity c")
     int findMaxPrice();
-
 }

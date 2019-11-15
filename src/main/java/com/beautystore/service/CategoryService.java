@@ -3,7 +3,6 @@ package com.beautystore.service;
 import com.beautystore.dto.request.CategoryRequest;
 import com.beautystore.dto.response.CategoryResponse;
 import com.beautystore.dto.response.DataResponse;
-import com.beautystore.model.Category;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 

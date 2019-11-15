@@ -4,9 +4,9 @@ Change the password for database server in application.properties
 
 Run Java application.
 
-Open index.html file (src/main/resources/public/html/login.html).
+Open login.html file (src/main/resources/public/html/login.html).
 
-Open login.html file (src/main/resources/public/html/index/index.html).
+Open index.html file (src/main/resources/public/html/index/index.html).
 
 - Password for user: test
 - Login for user: test

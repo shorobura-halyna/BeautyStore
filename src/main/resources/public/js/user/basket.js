@@ -58,3 +58,33 @@ function remove(id) {
         }
     });
 }
+
+function buyAllCommodities() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/basket/buy',
+        headers: {'Access-Control-Allow-Origin': '*'},
+        success: function (response) {
+            console.log('response', response);
+            init(0);
+        },
+        error: function (e) {
+            console.log('error', e);
+        }
+    });
+}
+
+function logout() {
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8080/logout',
+        headers: {'Access-Control-Allow-Origin': '*'},
+        success: function (response) {
+            console.log('response', response);
+            window.location.replace("../../html/login.html");
+        },
+        error: function (e) {
+            console.log('error', e);
+        }
+    });
+}

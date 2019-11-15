@@ -280,3 +280,18 @@ function addToCart(id) {
         }
     })
 }
+
+function logout() {
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8080/logout',
+        headers: {'Access-Control-Allow-Origin': '*'},
+        success: function (response) {
+            console.log('response', response);
+            window.location.replace("../../html/login.html");
+        },
+        error: function (e) {
+            console.log('error', e);
+        }
+    });
+}

@@ -16,4 +16,6 @@ public interface BasketService {
                                          Integer id);
 
     void addToCart(int id);
+
+    void buy();
 }

@@ -3,11 +3,13 @@ package com.beautystore.service.impl;
 import com.beautystore.controller.LoginController;
 import com.beautystore.dao.BasketDao;
 import com.beautystore.dao.CommodityDao;
+import com.beautystore.dao.PurchaseDao;
 import com.beautystore.dao.UserDao;
 import com.beautystore.dto.response.BasketResponse;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.model.Basket;
 import com.beautystore.model.Commodity;
+import com.beautystore.model.Purchase;
 import com.beautystore.model.User;
 import com.beautystore.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +30,8 @@ public class BasketServiceImpl implements BasketService {
     private UserDao userDao;
     @Autowired
     private CommodityDao commodityDao;
+    @Autowired
+    private PurchaseDao purchaseDao;
     @Override
     public void delete(int id) {
         basketDao.deleteById(id);
@@ -55,6 +61,20 @@ public class BasketServiceImpl implements BasketService {
         Basket basket = userDao.getOne(LoginController.user.getId()).getBasket();
         Commodity commodity = commodityDao.getOne(id);
         basket.getCommodities().add(commodity);
+        basketDao.save(basket);
+    }
+
+    @Override
+    public void buy() {
+        User user = userDao.getOne(LoginController.user.getId());
+        Purchase purchase = new Purchase();
+        purchase.setDate(LocalDateTime.now());
+        purchase.setTotalAmount(user.getBasket().getCommodities().stream().mapToInt(Commodity::getPrice).sum());
+        purchase.setUser(user);
+        purchase.setCommodities(new ArrayList<>(user.getBasket().getCommodities()));
+        purchaseDao.save(purchase);
+        Basket basket = user.getBasket();
+        basket.getCommodities().clear();
         basketDao.save(basket);
     }
 }

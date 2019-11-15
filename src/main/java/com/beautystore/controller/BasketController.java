@@ -31,9 +31,15 @@ public class BasketController {
         return basketService.findAll(page, size, sortBy, direction, id);
     }
 
-   @GetMapping("/addToCart")
-    public HttpStatus addToCard(@RequestParam int id){
+    @GetMapping("/addToCart")
+    public HttpStatus addToCard(@RequestParam int id) {
         basketService.addToCart(id);
         return HttpStatus.OK;
-   }
+    }
+
+    @GetMapping("/buy")
+    public HttpStatus buy() {
+        basketService.buy();
+        return HttpStatus.OK;
+    }
 }

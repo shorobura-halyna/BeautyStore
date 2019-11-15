@@ -17,7 +17,7 @@ function init(page) {
                 data +=
                     '<div class="col-lg-3 col-md-6 mb-4">' +
                     '<div class="card h-100">' +
-                    '<img class="card-img-top" src="http://localhost:8080/' + pictureUrl + '" alt="pic" width="500" height="325">' +
+                    '<img id="commodityImage" class="card-img-top" src="http://localhost:8080/' + pictureUrl + '" alt="pic" width="500" height="325">' +
                     '<div class="card-body">' +
                     '<h4 class="card-title"><b>' + name + '</b></h4>' +
                     '<h6 class="card-title">' + brand + '</h6>' +
@@ -148,10 +148,11 @@ function applyRangeFilter() {
                 var price = response.data[i].price;
                 var brand = response.data[i].brand;
                 var subcategory = response.data[i].subcategory;
+                var pictureUrl = response.data[i].urlToPicture;
                 data +=
                     '<div class="col-lg-3 col-md-6 mb-4">' +
                     '<div class="card h-100">' +
-                    '<img class="card-img-top" src="http://placehold.it/500x325" alt="">' +
+                    '<img id="commodityImage" class="card-img-top" src="http://localhost:8080/' + pictureUrl + '" alt="pic" width="500" height="325">' +
                     '<div class="card-body">' +
                     '<h4 class="card-title"><b>' + name + '</b></h4>' +
                     '<h6 class="card-title">' + brand + '</h6>' +
@@ -215,10 +216,11 @@ function changePageWithFilter(page) {
                 var price = response.data[i].price;
                 var brand = response.data[i].brand;
                 var subcategory = response.data[i].subcategory;
+                var pictureUrl = response.data[i].urlToPicture;
                 data +=
                     '<div class="col-lg-3 col-md-6 mb-4">' +
                     '<div class="card h-100">' +
-                    '<img class="card-img-top" src="http://placehold.it/500x325" alt="">' +
+                    '<img id="commodityImage" class="card-img-top" src="http://localhost:8080/' + pictureUrl + '" alt="pic" width="500" height="325">' +
                     '<div class="card-body">' +
                     '<h4 class="card-title"><b>' + name + '</b></h4>' +
                     '<h6 class="card-title">' + brand + '</h6>' +

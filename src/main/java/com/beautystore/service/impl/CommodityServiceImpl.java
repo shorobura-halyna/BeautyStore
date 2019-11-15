@@ -64,6 +64,7 @@ public class CommodityServiceImpl implements CommodityService {
         Brand brand = brandDao.getOne(commodityRequest.getBrandId());
         Subcategory subcategory = subcategoryDao.getOne(commodityRequest.getSubcategoryId());
         Commodity commodity = new Commodity(commodityRequest.getName(), commodityRequest.getPrice());
+        commodity.setId(commodityRequest.getId());
         commodity.setBrand(brand);
         commodity.setSubcategory(subcategory);
         return commodity;

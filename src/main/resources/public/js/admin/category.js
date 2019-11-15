@@ -61,7 +61,7 @@ function save() {
         success: function (response) {
             console.log('response', response);
             $('#categoryName').val(''); //clean val from input
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);
@@ -78,7 +78,7 @@ function remove(id) {
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
             console.log('response', response);
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);
@@ -122,7 +122,7 @@ function saveUpdatedCategory(id) {
             console.log('response', response);
             $('#categoryName').val(''); //clean val from input
             $('#saveCategory').html("<button class='btn btn-success mb-2' onclick='save()'>Add category</button>");
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

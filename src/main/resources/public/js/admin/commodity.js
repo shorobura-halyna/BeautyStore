@@ -20,7 +20,7 @@ function init(page) {
                     '<td>' + price + '</td>' +
                     '<td>' + brand + '</td>' +
                     '<td>' + subcategory + '</td>' +
-                    "<td><button type='button' class='btn btn-primary btn-sm' onclick='update (" + id + ",\"" + name + "\",\"" + price + "\")'>update</button></td>" +
+                    "<td><button type='button' class='btn btn-primary btn-sm' onclick='update (" + id + ",\"" + name + "\",\"" + price + "\",\"" + brand + "\",\"" + subcategory + "\")'>update</button></td>" +
                     '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
                     '</tr>';
             }
@@ -103,13 +103,13 @@ function save() {
     var subcategoryId = $('#subcategoryDropdown').val();
     var brandId = $('#brandDropdown').val();
     var files = document.getElementById("picture").files;
-    var pictureParam = files.length >0 ? files[0] : null;
+    var pictureParam = files.length > 0 ? files[0] : null;
 
     var fromData = new FormData();
-    fromData.append("name",commodityName);
-    fromData.append("price",commodityPrice);
-    fromData.append("subcategoryId",subcategoryId);
-    fromData.append("brandId",brandId);
+    fromData.append("name", commodityName);
+    fromData.append("price", commodityPrice);
+    fromData.append("subcategoryId", subcategoryId);
+    fromData.append("brandId", brandId);
     fromData.append("file", pictureParam);
 
     $.ajax({
@@ -151,12 +151,14 @@ function remove(id) {
 
 
 //put old commodity name value into input
-function update(id, name, price) {
+function update(id, name, price, brand, subcategory) {
     console.log(id);
     console.log(name);
     console.log(price);
     $('#commodityName').val(name);
     $('#commodityPrice').val(price);
+    $("#brandDropdown option:contains(" + brand +")").attr("selected", true);
+    $("#subcategoryDropdown option:contains(" + subcategory +")").attr("selected", true);
     $('#saveCommodity').html("<button id='updateSubcategory' class='btn btn-success mx-sm-3 mb-2' onclick='saveUpdatedCommodity(" + id + ")'>Update commodity</button>" +
         "<button id='cancel' class='btn btn-secondary mx-sm-3 mb-2' onclick='cancel()'>Cancel</button>");
 }

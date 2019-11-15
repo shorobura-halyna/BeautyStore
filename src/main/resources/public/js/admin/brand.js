@@ -67,7 +67,7 @@ function save() {
         success: function (response) {
             console.log('response', response);
             $('#brandName').val(''); //clean val from input
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

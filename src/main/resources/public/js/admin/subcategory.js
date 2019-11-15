@@ -17,7 +17,7 @@ function init(page) {
                     '<td>' + id + '</td>' +
                     '<td>' + name + '</td>' +
                     '<td>' + category + '</td>' +
-                    "<td><button type='button' class='btn btn-primary btn-sm' onclick='update (" + id + ",\"" + name + "\")'>update</button></td>" +
+                    "<td><button type='button' class='btn btn-primary btn-sm' onclick='update (" + id + ",\"" + name + "\",\"" + category + "\")'>update</button></td>" +
                     '<td><button type="button" class="btn btn-primary btn-sm btn-danger" onclick=remove(' + id + ')>delete</button></td>' +
                     '</tr>';
             }
@@ -66,7 +66,7 @@ function save() {
         success: function (response) {
             console.log('response', response);
             $('#subcategoryName').val(''); //clean val from input
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);
@@ -83,7 +83,7 @@ function remove(id) {
         headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
             console.log('response', response);
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);
@@ -115,10 +115,11 @@ function initCategoryDropdown() {
 }
 
 //put old subcategory name value into input
-function update(id, name) {
+function update(id, name, category) {
     console.log(id);
     console.log(name);
     $('#subcategoryName').val(name);
+    $("#categoryDropdown option:contains(" + category +")").attr("selected", true);
     $('#saveSubcategory').html("<button id='updateSubcategory' class='btn btn-success mx-sm-3 mb-2' onclick='saveUpdatedSubcategory(" + id + ")'>Update subcategory</button>" +
         "<button id='cancel' class='btn btn-secondary mx-sm-3 mb-2' onclick='cancel()'>Cancel</button>");
 }
@@ -151,7 +152,7 @@ function saveUpdatedSubcategory(id) {
             console.log('response', response);
             $('#subcategoryName').val(''); //clean val from input
             $('#saveSubcategory').html("<button class='btn btn-success mb-2' onclick='save()'>Add subcategory</button>");
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

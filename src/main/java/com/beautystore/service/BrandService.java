@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BrandService {
     void save(BrandRequest brandRequest);
+
     void update(BrandRequest brandRequest);
 
     void delete(int id);
@@ -18,5 +19,6 @@ public interface BrandService {
                                         String sortBy,
                                         Sort.Direction direction,
                                         String name);
+
     DataResponse<BrandResponse> findAll();
 }

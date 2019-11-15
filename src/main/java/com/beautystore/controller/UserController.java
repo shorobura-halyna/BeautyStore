@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/filter")
-    public List<UserResponse> filter(@RequestBody FilterUserRequest filterUserRequest){
+    public List<UserResponse> filter(@RequestBody FilterUserRequest filterUserRequest) {
         return userService.filter(filterUserRequest);
     }
 }

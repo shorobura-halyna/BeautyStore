@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface SubcategoryService {
     void save(SubcategoryRequest subcategoryRequest);
+
     void update(SubcategoryRequest subcategoryRequest);
 
     void delete(int id);
@@ -20,5 +21,6 @@ public interface SubcategoryService {
                                               String sortBy,
                                               Sort.Direction direction,
                                               String subcategoryName);
+
     DataResponse<SubcategoryResponse> findAll();
 }

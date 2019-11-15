@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface CommodityDao extends JpaRepository<Commodity, Integer>, JpaSpecificationExecutor<Commodity> {
     Page<Commodity> findAllByNameLike(String name, Pageable pageable);
+
     @Query("select max(c.price) from Commodity c")
     int findMaxPrice();
 }

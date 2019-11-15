@@ -79,7 +79,7 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     /**
      * detach subcategory commodities from this category
      * and delete this category
-     * */
+     */
     @Override
     public void delete(int id) {
         Subcategory subcategory = subcategoryDao.getOne(id);

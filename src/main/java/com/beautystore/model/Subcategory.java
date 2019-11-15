@@ -27,6 +27,7 @@ public class Subcategory {
         this.name = subcategoryRequest.getName();
         this.category = category;
     }
+
     public Subcategory(int id, String name, Category category) {
         this.id = id;
         this.name = name;

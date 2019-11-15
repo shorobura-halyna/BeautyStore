@@ -30,13 +30,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void update(CategoryRequest categoryRequest) {
-       categoryDao.save(new Category(categoryRequest.getId(), categoryRequest.getName()));
+        categoryDao.save(new Category(categoryRequest.getId(), categoryRequest.getName()));
     }
 
     /**
      * detach category subcategories from this category
      * and delete this category
-     * */
+     */
     @Override
     public void delete(int id) {
         Category category = categoryDao.getOne(id);

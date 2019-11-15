@@ -28,7 +28,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Purchase> purchases = new ArrayList<>();
 
-    public User (UserRequest userRequest){
+    public User(UserRequest userRequest) {
         this.email = userRequest.getEmail();
         this.login = userRequest.getLogin();
         this.password = userRequest.getPassword();

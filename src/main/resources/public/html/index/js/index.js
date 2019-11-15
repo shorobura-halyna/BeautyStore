@@ -214,9 +214,11 @@ function applyRangeFilter() {
                     '<h6 class="card-title">' + subcategory + '</h6>' +
                     '<h6 class="card-title"><b>' + price + '</b></h6>' +
                     '</div>' +
-                    '<div class="card-footer">' +
-                    '<a href="#" class="btn btn-primary">add to cart</a> ' +
-                    "<a href='#' class='btn btn-primary' onclick='details(" + id + ")'>details</a>" +
+                    '<div class="card-footer">';
+                if ('USER' === response.currentUserRole) {
+                    data += "<a class='btn btn-primary' onclick='addToCart(" + id + ")'>add to cart</a> ";
+                }
+                data += "<a class='btn btn-primary' onclick='details(" + id + ")'>details</a>" +
                     '</div>' +
                     '</div>' +
                     '</div>' +

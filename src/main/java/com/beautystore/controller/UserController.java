@@ -1,7 +1,6 @@
 package com.beautystore.controller;
 
 import com.beautystore.dto.request.UserRequest;
-import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.UserResponse;
 import com.beautystore.service.UserService;
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -47,8 +45,4 @@ public class UserController {
         return HttpStatus.OK;
     }
 
-    @PostMapping("/filter")
-    public List<UserResponse> filter(@RequestBody FilterUserRequest filterUserRequest) {
-        return userService.filter(filterUserRequest);
-    }
 }

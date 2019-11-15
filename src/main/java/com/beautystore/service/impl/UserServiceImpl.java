@@ -3,21 +3,18 @@ package com.beautystore.service.impl;
 import com.beautystore.dao.BasketDao;
 import com.beautystore.dao.UserDao;
 import com.beautystore.dto.request.UserLoginRequest;
-import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.request.UserRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.UserResponse;
 import com.beautystore.model.Basket;
 import com.beautystore.model.User;
 import com.beautystore.service.UserService;
-import com.beautystore.specification.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,14 +64,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(int id) {
         userDao.deleteById(id);
-    }
-
-    @Override
-    public List<UserResponse> filter(FilterUserRequest filterUserRequest) {
-        UserSpecification userSpecification = new UserSpecification(filterUserRequest);
-        return userDao.findAll(userSpecification).stream()
-                .map(UserResponse::new)
-                .collect(Collectors.toList());
     }
 
     @Override

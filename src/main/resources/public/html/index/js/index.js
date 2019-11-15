@@ -46,6 +46,54 @@ function init(page) {
 
             $('#pagination').html(paginationData);
             initPriceFilter();
+
+            var navItemsBar;
+
+            if ('ADMIN' === response.currentUserRole) {
+                navItemsBar =
+                    '<ul class="navbar-nav mr-auto mt-2 mt-lg-0">\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../admin/user.html">User</a>\n' +
+                    '</li>\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../admin/purchase.html">Purchase</a>\n' +
+                    '</li>\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../admin/brand.html">Brand</a>\n' +
+                    '</li>\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../admin/commodity.html">Commodity</a>\n' +
+                    '</li>\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../admin/category.html">Category</a>\n' +
+                    '</li>\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../admin/subcategory.html">SubCategory</a>\n' +
+                    '</li>\n' +
+                    '</ul>\n' +
+                    '<form class="form-inline my-2 my-lg-0">\n' +
+                    '<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="logout()">Logout</button>\n' +
+                    '</form>';
+            } else if ('USER' === response.currentUserRole) {
+                navItemsBar =
+                    '<ul class="navbar-nav mr-auto mt-2 mt-lg-0">\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../user/purchase.html">My Purchases</a>\n' +
+                    '</li>\n' +
+                    '<li class="nav-item">\n' +
+                    '<a class="nav-link" href="../user/basket.html">Basket</a>\n' +
+                    '</li>\n' +
+                    '</ul>\n' +
+                    '<div class="form-inline my-2 my-lg-0">\n' +
+                    '<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="logout()">Logout</button>\n' +
+                    '</div>';
+            } else {
+                navItemsBar =
+                    '<div class="form-inline my-2 my-lg-0">' +
+                    '<a href="../login.html"><button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Login</button></a>' +
+                    '</div>'
+            }
+            $('#nav-items-bar').html(navItemsBar);
         },
         error: function (e) {
             console.log('error', e);

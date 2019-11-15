@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-image: url('../image/AdobeStock_199657094.jpg');
+background-repeat: no-repeat;background-position: center;
+ background-size: auto">
+
+<div id="logo" style="margin-top: 2%">
+    <img src="../image/logo.png" alt="logo">
+    <button id="backHomeBtn" type="button" class="btn btn-outline-success"><b>Back Home</b></button>
+
+</div>
+
+
+<div id="login-page">
+    <div class="form">
+        <form class="register-form">
+            <input type="text" id="userName" placeholder="name"/>
+            <input type="password" id="userPassword" placeholder="password"/>
+            <input type="text" id="userEmail" placeholder="email address"/>
+            <button type="submit" class="btn btn-success mb-2" onclick="create()"> create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form class="login-form">
+            <input type="text" placeholder="username"/>
+            <input type="password" placeholder="password"/>
+            <button>login</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
+    </div>
+</div>
+<script src="../js/login.js"></script>
+</body>
+</html>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,14 +23,14 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @PostMapping
-    public HttpStatus save(@RequestBody @Valid CommodityRequest commodityRequest) {
-        commodityService.save(commodityRequest);
+    public HttpStatus save(CommodityRequest commodityRequest, @RequestParam MultipartFile file) {
+        commodityService.save(commodityRequest, file);
         return HttpStatus.OK;
     }
 
     @PutMapping
     public HttpStatus update(@RequestBody @Valid CommodityRequest commodityRequest) {
-        commodityService.save(commodityRequest);
+        commodityService.update(commodityRequest);
         return HttpStatus.OK;
     }
 

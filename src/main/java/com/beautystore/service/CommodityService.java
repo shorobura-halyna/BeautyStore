@@ -4,15 +4,13 @@ import com.beautystore.dto.request.CommodityRequest;
 import com.beautystore.dto.request.filter.FilterCommodityRequest;
 import com.beautystore.dto.response.CommodityResponse;
 import com.beautystore.dto.response.DataResponse;
-import com.beautystore.model.Commodity;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public interface CommodityService {
-    void save(CommodityRequest commodityRequest);
+    CommodityResponse save(CommodityRequest commodityRequest, MultipartFile file);
 
     void update(CommodityRequest commodityRequest);
 

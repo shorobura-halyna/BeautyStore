@@ -12,15 +12,24 @@ import com.beautystore.model.Commodity;
 import com.beautystore.model.Subcategory;
 import com.beautystore.service.CommodityService;
 import com.beautystore.specification.CommoditySpecification;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import javax.transaction.Transactional;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.stream.Collectors;
 
+import static java.nio.file.Paths.get;
+import static java.util.Objects.requireNonNull;
+
+@Log4j2
 @Service
 public class CommodityServiceImpl implements CommodityService {
     @Autowired
@@ -30,18 +39,39 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private BrandDao brandDao;
 
+    @Transactional
     @Override
-    public void save(CommodityRequest commodityRequest) {
+    public CommodityResponse save(CommodityRequest commodityRequest, MultipartFile file) {
+        Commodity commodity = commodityRequestToCommodity(commodityRequest);
+        log.info("Original file name -> " + file.getOriginalFilename());
+        String[] arrayForGetExpansion = requireNonNull(file.getOriginalFilename().split("\\."));
+        String expansion = arrayForGetExpansion[arrayForGetExpansion.length - 1];
+        String nameOfFile = commodity.getName() + "." + expansion;
+        String fullPath = "src/main/resources/static/" + nameOfFile;
+        commodity.setUrlToPicture(nameOfFile);
+        commodity = commodityDao.save(commodity);
+        try {
+            Files.copy(file.getInputStream(), get(fullPath), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            log.error("Exception while saving picture " + file.getOriginalFilename());
+            e.printStackTrace();
+        }
+        return new CommodityResponse(commodity);
+    }
+
+
+    private Commodity commodityRequestToCommodity(CommodityRequest commodityRequest) {
         Brand brand = brandDao.getOne(commodityRequest.getBrandId());
         Subcategory subcategory = subcategoryDao.getOne(commodityRequest.getSubcategoryId());
-        commodityDao.save(new Commodity(commodityRequest, brand, subcategory));
+        Commodity commodity = new Commodity(commodityRequest.getName(), commodityRequest.getPrice());
+        commodity.setBrand(brand);
+        commodity.setSubcategory(subcategory);
+        return commodity;
     }
 
     @Override
     public void update(CommodityRequest commodityRequest) {
-        Brand brand = brandDao.getOne(commodityRequest.getBrandId());
-        Subcategory subcategory = subcategoryDao.getOne(commodityRequest.getSubcategoryId());
-        commodityDao.save(new Commodity(commodityRequest, brand, subcategory));
+        commodityDao.save((commodityRequestToCommodity(commodityRequest)));
     }
 
     @Override

@@ -12,12 +12,14 @@ public class CommodityResponse {
     private int price;
     private String brand;
     private String subcategory;
+    private String urlToPicture;
 
     public CommodityResponse(Commodity commodity) {
         this.id = commodity.getId();
         this.name = commodity.getName();
         this.price = commodity.getPrice();
         this.brand = commodity.getBrand().getName();
+        this.urlToPicture = commodity.getUrlToPicture();
         this.subcategory = commodity.getSubcategory() != null ? commodity.getSubcategory().getName() : "";
     }
 }

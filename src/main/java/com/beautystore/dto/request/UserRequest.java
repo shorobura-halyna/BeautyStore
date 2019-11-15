@@ -9,24 +9,24 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 public class UserRequest {
-    @NotNull
-    @NotBlank
+//    @NotNull
+//    @NotBlank
     private String firstName;
-    @NotNull
-    @NotBlank
+//    @NotNull
+//    @NotBlank
     private String secondName;
-    @Size(min = 10)
-    @NotBlank
+//    @Size(min = 10)
+//    @NotBlank
     private String phone;
-    @Email(message = "test not valid")
-    @NotBlank
+//    @Email(message = "test not valid")
+//    @NotBlank
     private String email;
-    @Positive
-    @Max(value = 100)
+//    @Positive
+//    @Max(value = 100)
     private int age;
-    @JsonIgnoreProperties
+//    @JsonIgnoreProperties
     private String login;
-    @Size(min = 5)
-    @JsonIgnoreProperties
+//    @Size(min = 5)
+//    @JsonIgnoreProperties
     private String password;
 }

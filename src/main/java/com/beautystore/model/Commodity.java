@@ -1,7 +1,9 @@
 package com.beautystore.model;
 
-import com.beautystore.dto.request.CommodityRequest;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class Commodity {
     private Brand brand;
     @ManyToOne
     private Subcategory subcategory;
+    private String urlToPicture;
     @ManyToMany
     @JoinTable(name = "Basket_Commodity", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn(name = "id_basket"))
     private List<Basket> baskets = new ArrayList<>();
@@ -30,11 +33,9 @@ public class Commodity {
     @JoinTable(name = "Commodity_Purchase", joinColumns = @JoinColumn(name = "id_commodity"), inverseJoinColumns = @JoinColumn(name = "id_purchase"))
     private List<Purchase> purchases = new ArrayList<>();
 
-    public Commodity(CommodityRequest commodityRequest, Brand brand, Subcategory subcategory) {
-        this.name = commodityRequest.getName();
-        this.price = commodityRequest.getPrice();
-        this.brand = brand;
-        this.subcategory = subcategory;
+    public Commodity(String name, int price) {
+        this.name = name;
+        this.price = price;
     }
 
     public Commodity(int id, String name) {

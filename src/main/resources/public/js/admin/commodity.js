@@ -97,30 +97,35 @@ function initBrandDropdown() {
 }
 
 function save() {
+    event.preventDefault();
     var commodityName = $('#commodityName').val();
     var commodityPrice = $('#commodityPrice').val();
     var subcategoryId = $('#subcategoryDropdown').val();
     var brandId = $('#brandDropdown').val();
+    var files = document.getElementById("picture").files;
+    var pictureParam = files.length >0 ? files[0] : null;
 
-    var obj = {
-        'name': commodityName,
-        'price': commodityPrice,
-        'subcategoryId': subcategoryId,
-        'brandId': brandId
-    };
+    var fromData = new FormData();
+    fromData.append("name",commodityName);
+    fromData.append("price",commodityPrice);
+    fromData.append("subcategoryId",subcategoryId);
+    fromData.append("brandId",brandId);
+    fromData.append("file", pictureParam);
 
     $.ajax({
         type: 'POST',
         url: 'http://localhost:8080/commodity',
-        contentType: 'application/json; charset=UTF-8',
-        dataType: 'json',
-        data: JSON.stringify(obj),
-        headers: {'Access-Control-Allow-Origin': '*'},
+        // contentType: 'application/json; charset=UTF-8',
+        // dataType: 'json',
+        processData: false,
+        contentType: false,
+        data: fromData,
+        // headers: {'Access-Control-Allow-Origin': '*'},
         success: function (response) {
             console.log('response', response);
             $('#commodityName').val(''); //clean val from input
             $('#commodityPrice').val(''); //clean val from input
-            init();
+            init(0);
         },
         error: function (e) {
             console.log('error', e);

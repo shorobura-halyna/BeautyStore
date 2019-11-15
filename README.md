@@ -13,8 +13,7 @@ Open index.html file (src/main/resources/public/html/index/index.html).
 
 You will be able to see all commodities, categories...and CRUD operation for them.
 
-- Password for admin: admin
-- Login for admin: admin
+Also, you can create your oun user and test addToCart(), MyPurchases() by yourself.
 
 
 

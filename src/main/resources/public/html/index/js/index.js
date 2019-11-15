@@ -169,7 +169,12 @@ function initPriceFilter() {
 
 function applyRangeFilter() {
     var value = $('#priceFilter').val();
-    var page = $('#currentPage').html()[0] - 1;
+    var page;
+    if ($('#currentPage').html()=== undefined){
+        page = 0;
+    } else {
+        page = $('#currentPage').html()[0] - 1;
+    }
     console.log(value);
     console.log(page);
 

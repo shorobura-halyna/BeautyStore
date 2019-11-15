@@ -1,10 +1,9 @@
 package com.beautystore.controller;
 
-import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.request.UserRequest;
+import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.UserResponse;
-import com.beautystore.model.User;
 import com.beautystore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -30,7 +29,6 @@ public class UserController {
     @PutMapping
     public HttpStatus update(@RequestParam int id,
                              @RequestParam String phone) {
-        userService.save(new User(id, phone));
         return HttpStatus.OK;
     }
 

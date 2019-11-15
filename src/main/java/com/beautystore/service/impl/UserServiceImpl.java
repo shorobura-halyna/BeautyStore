@@ -1,10 +1,13 @@
 package com.beautystore.service.impl;
 
+import com.beautystore.dao.BasketDao;
 import com.beautystore.dao.UserDao;
+import com.beautystore.dto.request.UserLoginRequest;
 import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.request.UserRequest;
 import com.beautystore.dto.response.DataResponse;
 import com.beautystore.dto.response.UserResponse;
+import com.beautystore.model.Basket;
 import com.beautystore.model.User;
 import com.beautystore.service.UserService;
 import com.beautystore.specification.UserSpecification;
@@ -21,10 +24,20 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private BasketDao basketDao;
+
 
     @Override
     public void save(UserRequest userRequest) {
-        userDao.save(new User(userRequest));
+        Basket basket = new Basket();
+        basketDao.save(basket);
+        User user = new User(userRequest);
+        user.setBasket(basket);
+        user.setRole(User.Role.USER);
+        userDao.save(user);
+        basket.setUser(user);
+        basketDao.save(basket);
     }
 
     @Override
@@ -42,7 +55,7 @@ public class UserServiceImpl implements UserService {
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         Page<User> userPage;
         if (secondName != null) {
-            userPage = userDao.findAllBySecondNameLike("%" + secondName + "%", pageRequest);
+            userPage = userDao.findAllByLoginLike("%" + secondName + "%", pageRequest);
         } else {
             userPage = userDao.findAll(pageRequest);
         }
@@ -62,5 +75,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll(userSpecification).stream()
                 .map(UserResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserResponse login(UserLoginRequest userRequest) {
+        User user = userDao.findByLoginAndPassword(userRequest.getLogin(), userRequest.getPassword());
+        return new UserResponse(user);
     }
 }

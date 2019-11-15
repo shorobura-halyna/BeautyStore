@@ -21,16 +21,16 @@ background-repeat: no-repeat;background-position: center;
 <div id="login-page">
     <div class="form">
         <form class="register-form">
-            <input type="text" id="userName" placeholder="name"/>
-            <input type="password" id="userPassword" placeholder="password"/>
+            <input type="text" id="loginForRegistration" placeholder="login"/>
+            <input type="password" id="passwordForRegistration" placeholder="password"/>
             <input type="text" id="userEmail" placeholder="email address"/>
-            <button type="submit" class="btn btn-success mb-2" onclick="create()"> create</button>
+            <span type="submit" class="btn btn-success mb-2" onclick="create()"> create</span>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
         <form class="login-form">
-            <input type="text" placeholder="username"/>
-            <input type="password" placeholder="password"/>
-            <button>login</button>
+            <input type="text" id="loginForLogin" placeholder="login"/>
+            <input type="password" id="passwordForLogin" placeholder="password"/>
+            <span class="btn btn-success mb-2" onclick="login()">login</span>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>
     </div>

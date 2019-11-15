@@ -1,22 +1,31 @@
 package com.beautystore.controller;
 
+import com.beautystore.dto.request.UserLoginRequest;
+import com.beautystore.dto.response.UserResponse;
+import com.beautystore.model.User;
 import com.beautystore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/login")
 @CrossOrigin
 public class LoginController {
+
+    public static UserResponse user;
+
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public HttpStatus login() {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public UserResponse login(@RequestBody UserLoginRequest userLoginRequest) {
+        user = userService.login(userLoginRequest);
+        return user;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public HttpStatus logout() {
+        user = null;
         return HttpStatus.OK;
     }
 }

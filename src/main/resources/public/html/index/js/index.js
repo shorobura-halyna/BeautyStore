@@ -25,8 +25,8 @@ function init(page) {
                     '<h6 class="card-title"><b>' + price + '</b></h6>' +
                     '</div>' +
                     '<div class="card-footer">' +
-                    '<a href="#" class="btn btn-primary">add to cart</a> ' +
-                    "<a href='#' class='btn btn-primary' onclick='details(" + id + ")'>details</a>" +
+                    "<a class='btn btn-primary' onclick='addToCart(" + id + ")'>add to cart</a> " +
+                    "<a class='btn btn-primary' onclick='details(" + id + ")'>details</a>" +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -80,7 +80,8 @@ function renderProductDetails(commodity) {
         '<div id="products" class="row list-group">\n' +
         '        <div class="item  col-xs-4 col-lg-4">\n' +
         '            <div class="thumbnail">\n' +
-        '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
+        '<img id="commodityImage" class="card-img-top" src="http://localhost:8080/' + commodity.urlToPicture + '" alt="pic" width="400" height="250">' +
+        // '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
         '                <div class="caption">\n' +
         '                    <h4 class="group inner list-group-item-heading">' + commodity.name + '</h4>\n' +
         '                    <h6 class="group inner list-group-item-heading">' + commodity.brand + '</h6>\n' +
@@ -265,4 +266,17 @@ function dropAllFilters() {
     init(0);
     $('#priceFilter').val(0);
     $('#priceFilterValue').html(0);
+}
+
+function addToCart(id) {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/basket/addToCart?id=' + id,
+        success: function (response) {
+            console.log('response', response);
+        },
+        error: function (e) {
+            console.log('error', e);
+        }
+    })
 }

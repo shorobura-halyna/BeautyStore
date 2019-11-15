@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface UserDao extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
-    Page<User> findAllBySecondNameLike(String secondName, Pageable pageable);
+    Page<User> findAllByLoginLike(String login, Pageable pageable);
 
+    User findByLoginAndPassword(String login, String password);
 }

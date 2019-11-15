@@ -1,5 +1,6 @@
 package com.beautystore.service;
 
+import com.beautystore.dto.request.UserLoginRequest;
 import com.beautystore.dto.request.filter.FilterUserRequest;
 import com.beautystore.dto.request.UserRequest;
 import com.beautystore.dto.response.DataResponse;
@@ -25,4 +26,6 @@ public interface UserService {
     void delete(int id);
 
     List<UserResponse> filter(FilterUserRequest filterUserRequest);
+
+    UserResponse login(UserLoginRequest userRequest);
 }

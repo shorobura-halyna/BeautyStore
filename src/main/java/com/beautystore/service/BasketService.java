@@ -14,4 +14,6 @@ public interface BasketService {
                                          String sortBy,
                                          Sort.Direction direction,
                                          Integer id);
+
+    void addToCart(int id);
 }

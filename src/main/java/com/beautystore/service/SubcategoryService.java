@@ -14,8 +14,6 @@ public interface SubcategoryService {
 
     void delete(int id);
 
-    void save(String subcategoryName, int categoryId);
-
     DataResponse<SubcategoryResponse> findAll(Integer page,
                                               Integer size,
                                               String sortBy,

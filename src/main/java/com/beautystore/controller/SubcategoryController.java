@@ -19,9 +19,6 @@ public class SubcategoryController {
     @Autowired
     private SubcategoryService subcategoryService;
 
-    @Autowired
-    private CategoryService categoryService;
-
     @PostMapping
     public HttpStatus save(@RequestBody @Valid SubcategoryRequest subcategoryRequest) {
         subcategoryService.save(subcategoryRequest);

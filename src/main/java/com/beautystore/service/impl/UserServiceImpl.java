@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BasketDao basketDao;
 
-
+    @Transactional
     @Override
     public void save(UserRequest userRequest) {
         Basket basket = new Basket();

@@ -30,15 +30,6 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     private CommodityDao commodityDao;
 
     @Override
-    public void save(String subcategoryName, int categoryId) {
-        Subcategory subcategory = new Subcategory();
-        subcategory.setName(subcategoryName);
-        Category category = categoryDao.getOne(categoryId);
-        subcategory.setCategory(category);
-        subcategoryDao.save(subcategory);
-    }
-
-    @Override
     public void save(SubcategoryRequest subcategoryRequest) {
         Category category = categoryDao.getOne(subcategoryRequest.getCategoryId());
         subcategoryDao.save(new Subcategory(subcategoryRequest, category));
@@ -80,6 +71,7 @@ public class SubcategoryServiceImpl implements SubcategoryService {
      * detach subcategory commodities from this category
      * and delete this category
      */
+    @Transactional
     @Override
     public void delete(int id) {
         Subcategory subcategory = subcategoryDao.getOne(id);

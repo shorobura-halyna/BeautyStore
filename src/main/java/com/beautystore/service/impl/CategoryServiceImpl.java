@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
      * detach category subcategories from this category
      * and delete this category
      */
+    @Transactional
     @Override
     public void delete(int id) {
         Category category = categoryDao.getOne(id);

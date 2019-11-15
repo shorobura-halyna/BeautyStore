@@ -18,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -68,17 +69,20 @@ public class BasketServiceImpl implements BasketService {
         basketDao.save(basket);
     }
 
+    @Transactional
     @Override
     public void buy() {
         User user = userDao.getOne(LoginController.user.getId());
-        Purchase purchase = new Purchase();
-        purchase.setDate(LocalDateTime.now());
-        purchase.setTotalAmount(user.getBasket().getCommodities().stream().mapToInt(Commodity::getPrice).sum());
-        purchase.setUser(user);
-        purchase.setCommodities(new ArrayList<>(user.getBasket().getCommodities()));
-        purchaseDao.save(purchase);
         Basket basket = user.getBasket();
-        basket.getCommodities().clear();
-        basketDao.save(basket);
+        if (!basket.getCommodities().isEmpty()){
+            Purchase purchase = new Purchase();
+            purchase.setDate(LocalDateTime.now());
+            purchase.setTotalAmount(basket.getCommodities().stream().mapToInt(Commodity::getPrice).sum());
+            purchase.setUser(user);
+            purchase.setCommodities(new ArrayList<>(basket.getCommodities()));
+            purchaseDao.save(purchase);
+            basket.getCommodities().clear();
+            basketDao.save(basket);
+        }
     }
 }

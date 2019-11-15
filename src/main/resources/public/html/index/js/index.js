@@ -129,7 +129,6 @@ function renderProductDetails(commodity) {
         '        <div class="item  col-xs-4 col-lg-4">\n' +
         '            <div class="thumbnail">\n' +
         '<img id="commodityImage" class="card-img-top" src="http://localhost:8080/' + commodity.urlToPicture + '" alt="pic" width="400" height="250">' +
-        // '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
         '                <div class="caption">\n' +
         '                    <h4 class="group inner list-group-item-heading">' + commodity.name + '</h4>\n' +
         '                    <h6 class="group inner list-group-item-heading">' + commodity.brand + '</h6>\n' +
@@ -139,7 +138,7 @@ function renderProductDetails(commodity) {
         '                            <p class="lead">' + commodity.price + '$</p>\n' +
         '                        </div>\n' +
         '                        <div class="col-xs-12 col-md-6">\n' +
-        '                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>\n' +
+                                  "<a class='btn btn-primary' onclick='addToCart(" + commodity.id + ")'>add to cart</a> " +
         '                        </div>\n' +
         '                    </div>\n' +
         '                </div>\n' +
